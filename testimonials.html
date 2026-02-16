@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Testimonials — Furnish GH</title>
+  <meta name="description" content="Read what Furnish GH clients say about their premium handcrafted furniture experience." />
+  <meta property="og:title" content="Testimonials — Furnish GH" />
+  <meta property="og:description" content="What our clients across Ghana say about their Furnish GH experience." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1200&q=80" />
+  <link rel="canonical" href="https://furnishgh.netlify.app/testimonials.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* 2-col testimonials grid for this page */
+    #allTestimonials { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 640px) { #allTestimonials { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <a href="https://wa.me/233200000000" target="_blank" rel="noopener" class="floating-wa" aria-label="WhatsApp">&#9742;</a>
+
+  <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a>
+    <a href="gallery.html">Gallery</a><a href="custom-orders.html">Custom Orders</a><a href="contact.html">Contact</a>
+    <a href="custom-orders.html" class="btn btn-primary" style="margin-top:20px;">Get a Quote</a>
+  </nav>
+
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="nav-logo">Furnish<span>.</span>GH</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="products.html">Products</a></li>
+          <li><a href="gallery.html">Gallery</a></li><li><a href="custom-orders.html">Custom Orders</a></li><li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="custom-orders.html" class="nav-cta">Get a Quote</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>What Our Clients Say</h1>
+        <p>Real stories from real homes across Ghana.</p>
+      </div>
+    </section>
+
+    <section class="section-pad" style="background:#fff;">
+      <div class="container">
+        <div class="testimonials-grid" id="allTestimonials"></div>
+      </div>
+    </section>
+
+    <section class="cta-banner fade-in">
+      <div class="container">
+        <h2>Ready to Join Our Clients?</h2>
+        <a href="products.html" class="btn btn-primary" style="margin-top:40px;">Explore the Collection</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><div class="footer-logo">Furnish<span>.</span>GH</div><p class="footer-desc">Premium handmade furniture crafted for modern Ghanaian living.</p></div>
+        <div><p class="footer-heading">Navigation</p><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="products.html">Products</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="custom-orders.html">Custom Orders</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div><p class="footer-heading">Follow Us</p><div class="footer-social"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Instagram">ig</a><a href="#" aria-label="TikTok">tt</a></div><p class="footer-heading">Newsletter</p><form class="newsletter-form" onsubmit="return false;"><input type="email" placeholder="Your email address" /><button type="submit">Subscribe</button></form></div>
+      </div>
+    </div>
+    <div class="footer-bar"><div class="container footer-bar-inner"><p>&copy; 2024 Furnish GH.</p><p>Proudly made in Ghana.</p></div></div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

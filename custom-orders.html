@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Orders — Furnish GH</title>
+  <meta name="description" content="Commission bespoke furniture with Furnish GH. Tell us what you need and we'll build it to your exact specifications." />
+  <meta property="og:title" content="Custom Orders — Furnish GH" />
+  <meta property="og:description" content="Commission bespoke furniture built to your exact specifications." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1565793979681-0be10902b090?w=1200&q=80" />
+  <link rel="canonical" href="https://furnishgh.netlify.app/custom-orders.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a href="https://wa.me/233200000000" target="_blank" rel="noopener" class="floating-wa" aria-label="WhatsApp">&#9742;</a>
+
+  <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a>
+    <a href="gallery.html">Gallery</a><a href="custom-orders.html" class="active">Custom Orders</a><a href="contact.html">Contact</a>
+    <a href="custom-orders.html" class="btn btn-primary" style="margin-top:20px;">Get a Quote</a>
+  </nav>
+
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="nav-logo">Furnish<span>.</span>GH</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="products.html">Products</a></li>
+          <li><a href="gallery.html">Gallery</a></li><li><a href="custom-orders.html" class="active">Custom Orders</a></li><li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="custom-orders.html" class="nav-cta">Get a Quote</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Custom Orders</h1>
+        <p>We build furniture that fits your exact space, style, and life. Every bespoke piece is a collaboration.</p>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+      <div class="container">
+        <h2 class="section-heading fade-in">How It Works</h2>
+        <div class="steps-grid">
+          <div class="step-block fade-in fade-in-delay-1">
+            <div class="step-number">01</div>
+            <h3 class="step-title">Tell Us What You Need</h3>
+            <p class="step-desc">Fill in the form below with your requirements — dimensions, materials, finish, budget, and reference images. The more detail, the better.</p>
+          </div>
+          <div class="step-block fade-in fade-in-delay-2">
+            <div class="step-number">02</div>
+            <h3 class="step-title">We Send a Quote</h3>
+            <p class="step-desc">Within 24 hours, our team reviews your brief and sends a detailed quote with a proposed timeline. We discuss until you're completely happy.</p>
+          </div>
+          <div class="step-block fade-in fade-in-delay-3">
+            <div class="step-number">03</div>
+            <h3 class="step-title">We Build &amp; Deliver</h3>
+            <p class="step-desc">Once approved, our craftsmen get to work. We keep you updated throughout. On completion, we deliver and install at your location.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order Form -->
+    <section class="form-section" style="background:#fff;">
+      <div class="container" style="max-width:900px;">
+        <h2 class="section-heading fade-in">Place Your Order</h2>
+
+        <!-- Netlify Forms: add netlify attribute -->
+        <form
+          name="custom-order"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          enctype="multipart/form-data"
+          class="fade-in"
+        >
+          <!-- Netlify hidden fields -->
+          <input type="hidden" name="form-name" value="custom-order" />
+          <input type="hidden" name="bot-field" />
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" name="fullName" required placeholder="e.g. Kwame Mensah" />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="+233 20 000 0000" />
+            </div>
+            <div class="form-group">
+              <label for="whatsapp">WhatsApp Number</label>
+              <input type="tel" id="whatsapp" name="whatsapp" placeholder="+233 20 000 0000" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required placeholder="your@email.com" />
+            </div>
+            <div class="form-group">
+              <label for="furnitureType">Furniture Type *</label>
+              <select id="furnitureType" name="furnitureType" required>
+                <option value="" disabled selected>Select furniture type</option>
+                <option value="Sofa">Sofa</option>
+                <option value="Bed Frame">Bed Frame</option>
+                <option value="Dining Table">Dining Table</option>
+                <option value="Office Desk">Office Desk</option>
+                <option value="Wardrobe">Wardrobe</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="room">Room *</label>
+              <select id="room" name="room" required>
+                <option value="" disabled selected>Select room</option>
+                <option value="Living Room">Living Room</option>
+                <option value="Bedroom">Bedroom</option>
+                <option value="Office">Office</option>
+                <option value="Outdoor">Outdoor</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label for="dimensions">Dimensions / Size</label>
+              <textarea id="dimensions" name="dimensions" placeholder="e.g. 2.5m x 1.2m, or describe the space it needs to fit"></textarea>
+            </div>
+            <div class="form-group full">
+              <label for="materials">Preferred Materials or Finish</label>
+              <textarea id="materials" name="materials" placeholder="e.g. Natural oak, matte black metal frame, ivory linen upholstery"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="budget">Budget Range *</label>
+              <select id="budget" name="budget" required>
+                <option value="" disabled selected>Select budget</option>
+                <option value="Under GHS 500">Under GHS 500</option>
+                <option value="GHS 500–1,000">GHS 500 – 1,000</option>
+                <option value="GHS 1,000–2,500">GHS 1,000 – 2,500</option>
+                <option value="GHS 2,500–5,000">GHS 2,500 – 5,000</option>
+                <option value="Above GHS 5,000">Above GHS 5,000</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="deliveryDate">Preferred Delivery Date</label>
+              <input type="date" id="deliveryDate" name="deliveryDate" />
+            </div>
+            <div class="form-group full">
+              <label for="referenceImage">Reference Image (JPG or PNG)</label>
+              <input type="file" id="referenceImage" name="referenceImage" accept=".jpg,.jpeg,.png" />
+            </div>
+            <div class="form-group full">
+              <label for="notes">Additional Notes</label>
+              <textarea id="notes" name="notes" rows="5" placeholder="Any other details, special requests, or questions..."></textarea>
+            </div>
+            <div class="form-submit">
+              <button type="submit" class="btn btn-primary" style="font-size:1rem;padding:16px 48px;">Submit Order Request</button>
+            </div>
+          </div>
+
+          <div class="form-success" style="margin-top:24px;">
+            Thank you! We'll review your request and be in touch within 24 hours.
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><div class="footer-logo">Furnish<span>.</span>GH</div><p class="footer-desc">Premium handmade furniture crafted for modern Ghanaian living.</p></div>
+        <div><p class="footer-heading">Navigation</p><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="products.html">Products</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="custom-orders.html">Custom Orders</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div><p class="footer-heading">Follow Us</p><div class="footer-social"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Instagram">ig</a><a href="#" aria-label="TikTok">tt</a></div><p class="footer-heading">Newsletter</p><form class="newsletter-form" onsubmit="return false;"><input type="email" placeholder="Your email address" /><button type="submit">Subscribe</button></form></div>
+      </div>
+    </div>
+    <div class="footer-bar"><div class="container footer-bar-inner"><p>&copy; 2024 Furnish GH.</p><p>Proudly made in Ghana.</p></div></div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

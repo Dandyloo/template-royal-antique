@@ -1,0 +1,82 @@
+# ============================================================
+# Netlify CMS Configuration — Furnish GH
+# ============================================================
+backend:
+  name: git-gateway
+  branch: main
+
+# Cloudinary Media Library
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: YOUR_CLOUD_NAME
+    api_key: YOUR_CLOUDINARY_API_KEY
+
+media_folder: images
+public_folder: /images
+
+# ============================================================
+# COLLECTIONS
+# ============================================================
+collections:
+
+  # --- Products ---
+  - name: products
+    label: Products
+    label_singular: Product
+    folder: _products
+    create: true
+    slug: "{{slug}}"
+    extension: json
+    format: json
+    fields:
+      - { label: "Product Name", name: title, widget: string }
+      - { label: "Price (GHS)", name: price, widget: number, value_type: int }
+      - label: "Category"
+        name: category
+        widget: select
+        options:
+          - { label: "Living Room", value: "Living Room" }
+          - { label: "Bedroom", value: "Bedroom" }
+          - { label: "Office", value: "Office" }
+          - { label: "Outdoor", value: "Outdoor" }
+          - { label: "Custom", value: "Custom" }
+      - { label: "Description", name: description, widget: text }
+      - { label: "Product Image", name: image, widget: image, media_library: { config: { multiple: false } } }
+      - { label: "In Stock", name: instock, widget: boolean, default: true }
+      - { label: "Featured on Homepage", name: featured, widget: boolean, default: false }
+
+  # --- Testimonials ---
+  - name: testimonials
+    label: Testimonials
+    label_singular: Testimonial
+    folder: _testimonials
+    create: true
+    slug: "{{slug}}"
+    extension: json
+    format: json
+    fields:
+      - { label: "Customer Name", name: name, widget: string }
+      - { label: "Location", name: location, widget: string }
+      - { label: "Item Purchased", name: item_purchased, widget: string, required: false }
+      - { label: "Testimonial Text", name: testimonial, widget: text }
+      - { label: "Rating (1–5)", name: rating, widget: number, value_type: int, min: 1, max: 5, default: 5 }
+
+  # --- Site Settings ---
+  - name: settings
+    label: Site Settings
+    files:
+      - label: "Global Settings"
+        name: settings
+        file: _data/settings.json
+        fields:
+          - { label: "Business Name", name: business_name, widget: string }
+          - { label: "Tagline", name: tagline, widget: string }
+          - { label: "Phone", name: phone, widget: string }
+          - { label: "WhatsApp Number", name: whatsapp, widget: string }
+          - { label: "Email", name: email, widget: string }
+          - { label: "Address", name: address, widget: text }
+          - { label: "Business Hours", name: hours, widget: string }
+          - { label: "Facebook URL", name: facebook_url, widget: string, required: false }
+          - { label: "Instagram URL", name: instagram_url, widget: string, required: false }
+          - { label: "TikTok URL", name: tiktok_url, widget: string, required: false }

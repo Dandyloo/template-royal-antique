@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Furnish GH — Premium Furniture, Ghana</title>
+  <meta name="description" content="Furnish GH crafts premium handmade furniture for modern Ghanaian homes. Explore our collection of sofas, beds, tables, and bespoke pieces." />
+  <meta property="og:title" content="Furnish GH — Premium Furniture, Ghana" />
+  <meta property="og:description" content="Crafted for the way you live. Premium handmade furniture, Ghana." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=1200&q=80" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://furnishgh.netlify.app/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/233200000000" target="_blank" rel="noopener" class="floating-wa" aria-label="Chat on WhatsApp">&#9742;</a>
+
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="products.html">Products</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="custom-orders.html">Custom Orders</a>
+    <a href="contact.html">Contact</a>
+    <a href="custom-orders.html" class="btn btn-primary mobile-cta-btn">Get a Quote</a>
+  </nav>
+
+  <!-- Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771267162/5807522145226133037_121_va4olu.jpg" alt="Furnish GH Logo" class="logo-img" />
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="custom-orders.html">Custom Orders</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="custom-orders.html" class="nav-cta">Get a Quote</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="container">
+        <div class="hero-content">
+          <span class="hero-label">Royal Antique Home</span>
+          <h1 class="hero-title">Furniture Fit <br>For <br>Royalty</h1>
+          <p class="hero-sub">Timeless antique masterpieces handcrafted to bring palace elegance into your home.</p>
+          <div class="hero-btns">
+            <a href="products.html" class="btn btn-primary">Explore Collection</a>
+            <a href="custom-orders.html" class="btn btn-ghost">Custom Order</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="section-pad" style="background:var(--froth);">
+      <div class="container">
+        <h2 class="section-heading fade-in">Our Collection</h2>
+        <div class="products-grid" id="featuredProducts">
+          <div class="loading-skeleton"></div>
+          <div class="loading-skeleton"></div>
+          <div class="loading-skeleton"></div>
+        </div>
+        <div class="text-center mt-60 fade-in">
+          <a href="products.html" class="btn btn-outline">View All Products</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Strip -->
+    <section class="about-strip">
+      <div class="container">
+        <div class="about-strip-inner">
+          <div class="fade-in">
+            <h2 style="color:var(--white);">Built by Hand.<br>Built to Last.</h2>
+            <p style="color:rgba(255,255,255,0.8);margin-top:20px;">
+              Every piece we make begins with intention. From the careful selection of local timber to the final brush of finish, our craftsmen pour decades of skill into furniture that becomes part of your story.
+            </p>
+            <a href="about.html" class="btn btn-primary" style="margin-top:40px;">Our Story</a>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-block fade-in fade-in-delay-1"><div class="stat-number">500+</div><div class="stat-label">Pieces Crafted</div></div>
+            <div class="stat-block fade-in fade-in-delay-2"><div class="stat-number">10</div><div class="stat-label">Years of Craft</div></div>
+            <div class="stat-block fade-in fade-in-delay-3"><div class="stat-number">100%</div><div class="stat-label">Local Craft</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Preview -->
+    <section class="section-pad" style="background:var(--froth);">
+      <div class="container">
+        <h2 class="section-heading fade-in">What Clients Say</h2>
+        <div class="testimonials-grid" id="testimonialsPreview"></div>
+        <div class="text-center mt-60 fade-in">
+          <a href="testimonials.html" class="btn btn-outline">Read All Reviews</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner fade-in">
+      <div class="container">
+        <h2>Have Something in Mind?</h2>
+        <a href="custom-orders.html" class="btn btn-primary" style="margin-top:40px;">Start a Custom Order</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771267162/5807522145226133037_121_va4olu.jpg" alt="Furnish GH Logo" class="footer-logo-img" />
+          </div>
+          <p class="footer-desc">Premium handmade furniture crafted for modern Ghanaian living.</p>
+        </div>
+        <div>
+          <p class="footer-heading">Navigation</p>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="custom-orders.html">Custom Orders</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="testimonials.html">Testimonials</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Follow Us</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">ig</a>
+            <a href="#" aria-label="TikTok">tt</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div class="container footer-bar-inner">
+        <p>&copy; 2024 Furnish GH. All rights reserved.</p>
+        <p>Proudly made in Ghana.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Product Modal -->
+  <div class="modal-overlay" id="productModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <div class="modal-inner">
+        <img id="modalImg" src="" alt="" class="modal-img" loading="lazy" />
+        <div class="modal-content">
+          <p class="modal-category" id="modalCategory"></p>
+          <h2 class="modal-title" id="modalTitle"></h2>
+          <p class="modal-price" id="modalPrice"></p>
+          <span class="stock-badge" id="modalStock"></span>
+          <p class="modal-desc" id="modalDesc"></p>
+          <a href="custom-orders.html" class="btn btn-primary">Request This Item</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
