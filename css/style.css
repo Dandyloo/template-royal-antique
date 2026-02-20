@@ -351,7 +351,11 @@ p { line-height: 1.8; }
   inset: 0;
   background: rgba(66, 45, 39, 0.6);
 }
-.hero-content { position: relative; z-index: 2; max-width: 720px; }
+.hero-content { 
+  position: relative; 
+  z-index: 2; 
+  max-width: 720px; 
+}
 .hero-label {
   display: inline-block;
   font-size: 0.95rem;
