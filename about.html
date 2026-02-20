@@ -13,18 +13,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Inner pages: navbar always dark (no transparent phase) */
+    .navbar { background: var(--dark-brown); }
+    .story-content p { text-align: justify; }
+  </style>
 </head>
 <body>
   <a href="https://wa.me/233200000000" target="_blank" rel="noopener" class="floating-wa" aria-label="WhatsApp">&#9742;</a>
 
+  <!-- Mobile Nav — matches homepage structure -->
   <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
     <a href="index.html">Home</a>
     <a href="about.html" class="active">About</a>
     <a href="products.html">Products</a>
     <a href="gallery.html">Gallery</a>
     <a href="custom-orders.html">Custom Orders</a>
     <a href="contact.html">Contact</a>
-    <a href="custom-orders.html" class="btn btn-primary" style="margin-top:20px;">Get a Quote</a>
+    <a href="custom-orders.html" class="btn btn-primary mobile-cta-btn">Get a Quote</a>
   </nav>
 
   <!-- Navbar -->
@@ -62,7 +69,7 @@
       <div class="container">
         <div class="story-inner">
           <img
-            src="https://images.unsplash.com/photo-1565793979681-0be10902b090?w=800&q=80&auto=format&fit=crop"
+            src="https://www.elevify.com/_next/image?url=https%3A%2F%2Fapoia-images-production.s3.amazonaws.com%2F1671e58a-1035-4dab-9870-befa281f4399.png&w=3840&q=70"
             alt="Furnish GH workshop — artisans crafting premium furniture in Accra, Ghana"
             class="story-image fade-in"
             loading="lazy"
@@ -70,15 +77,20 @@
           <div class="story-content fade-in">
             <h3>We started with a belief.</h3>
             <p>
-              Furnish GH was founded in 2014 with a simple idea: that Ghana deserves world-class furniture made right here, by Ghanaian hands. Our founder, Emmanuel Kweku Asante, spent years apprenticing under master carpenters in Kumasi before opening our first workshop in Accra's industrial district.
+              Royal Antique Home was founded in 2026 as a subsidiary of Kings Group with a simple purpose — to bring timeless royal antique furniture into modern Ghanaian homes.
+              <br>We exist for people who value elegance, quality, and furniture that stands the test of time. <br>Based in Spintex, Accra, we specialise in imported royal antique furniture carefully selected to elevate every space — from bedrooms and living rooms to dining areas, kitchen sets, and statement pieces designed to define a home.
             </p>
             <h3 style="margin-top:40px;">Craft as philosophy.</h3>
             <p>
-              We believe furniture should be an investment, not a purchase. Every piece we produce is designed to outlast trends, to age with your family, and to carry the mark of human hands. We do not use mass-produced components. We do not rush. We do not compromise on materials.
+              We believe furniture should do more than fill a room. <br>
+              It should express taste, heritage, and attention to detail. 
+              <br> Every piece we offer is chosen for its design, structure, and finish — combining classic European inspiration with the comfort and practicality of modern living. Our collections are made to bring warmth, sophistication, and long-term value into everyday spaces.
             </p>
-            <h3 style="margin-top:40px;">A commitment to local.</h3>
+            <h3 style="margin-top:40px;">A commitment to Quality.</h3>
             <p>
-              Our timber is sourced from verified sustainable forests in Ghana. Our upholstery fabrics are woven locally in the Volta Region. Our metal hardware is forged by Accra-based artisans. When you buy from Furnish GH, you invest in a chain of Ghanaian excellence.
+              We do not believe in disposable furniture. <br>
+              Each product is selected for its durability, detailing, and ability to complement both traditional and contemporary interiors. <br>
+              From sourcing to showroom experience, we take a careful and deliberate approach — ensuring every piece meets our expectations for design, balance, and strength.
             </p>
           </div>
         </div>
@@ -93,17 +105,17 @@
           <div class="value-block fade-in fade-in-delay-1">
             <div class="value-number">01</div>
             <h3 class="value-title">Uncompromised Quality</h3>
-            <p class="value-desc">We use only premium-grade local hardwoods, hand-selected for grain and durability. Every joint is hand-finished. Every surface is inspected three times before delivery.</p>
+            <p class="value-desc">Every piece is reviewed for structure, finish, and comfort before it becomes part of our collection.</p>
           </div>
           <div class="value-block fade-in fade-in-delay-2">
             <div class="value-number">02</div>
-            <h3 class="value-title">Made in Ghana</h3>
-            <p class="value-desc">From raw material to finished piece, everything happens on Ghanaian soil. We are proud to employ, develop, and celebrate local craftspeople.</p>
+            <h3 class="value-title">Imported with Purpose</h3>
+            <p class="value-desc">Our furniture is sourced internationally and chosen for its craftsmanship and timeless appeal.</p>
           </div>
           <div class="value-block fade-in fade-in-delay-3">
             <div class="value-number">03</div>
             <h3 class="value-title">Designed for Life</h3>
-            <p class="value-desc">Our pieces are designed to grow with you — classic enough to stay relevant for decades, bold enough to be noticed. Form and function, always in balance.</p>
+            <p class="value-desc">Our designs remain relevant beyond trends, offering elegance that lasts for years.</p>
           </div>
         </div>
       </div>
@@ -150,7 +162,12 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div><div class="footer-logo">Furnish<span>.</span>GH</div><p class="footer-desc">Premium handmade furniture crafted for modern Ghanaian living.</p></div>
+        <div>
+          <div class="footer-logo">
+            <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771267162/5807522145226133037_121_va4olu.jpg" alt="Furnish GH Logo" class="footer-logo-img" />
+          </div>
+          <p class="footer-desc">Premium handmade furniture crafted for modern Ghanaian living.</p>
+        </div>
         <div>
           <p class="footer-heading">Navigation</p>
           <ul class="footer-links">

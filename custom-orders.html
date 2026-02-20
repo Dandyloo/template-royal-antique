@@ -11,25 +11,36 @@
   <link rel="canonical" href="https://furnishgh.netlify.app/custom-orders.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <a href="https://wa.me/233200000000" target="_blank" rel="noopener" class="floating-wa" aria-label="WhatsApp">&#9742;</a>
 
   <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
-    <a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a>
-    <a href="gallery.html">Gallery</a><a href="custom-orders.html" class="active">Custom Orders</a><a href="contact.html">Contact</a>
-    <a href="custom-orders.html" class="btn btn-primary" style="margin-top:20px;">Get a Quote</a>
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="products.html">Products</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="custom-orders.html" class="active">Custom Orders</a>
+    <a href="contact.html">Contact</a>
+    <a href="custom-orders.html" class="btn btn-primary mobile-cta-btn">Get a Quote</a>
   </nav>
 
-  <header class="navbar" id="navbar">
+  <header class="navbar inner-page" id="navbar">
     <div class="container">
       <div class="navbar-inner">
-        <a href="index.html" class="nav-logo">Furnish<span>.</span>GH</a>
+        <a href="index.html" class="nav-logo">
+          <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771267162/5807522145226133037_121_va4olu.jpg" alt="Furnish GH Logo" class="logo-img" />
+        </a>
         <ul class="nav-links">
-          <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="products.html">Products</a></li>
-          <li><a href="gallery.html">Gallery</a></li><li><a href="custom-orders.html" class="active">Custom Orders</a></li><li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="custom-orders.html" class="active">Custom Orders</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
         <a href="custom-orders.html" class="nav-cta">Get a Quote</a>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -45,7 +56,6 @@
       </div>
     </section>
 
-    <!-- How It Works -->
     <section class="how-it-works">
       <div class="container">
         <h2 class="section-heading fade-in">How It Works</h2>
@@ -69,12 +79,10 @@
       </div>
     </section>
 
-    <!-- Order Form -->
     <section class="form-section" style="background:#fff;">
       <div class="container" style="max-width:900px;">
         <h2 class="section-heading fade-in">Place Your Order</h2>
 
-        <!-- Netlify Forms: add netlify attribute -->
         <form
           name="custom-order"
           method="POST"
@@ -83,7 +91,6 @@
           enctype="multipart/form-data"
           class="fade-in"
         >
-          <!-- Netlify hidden fields -->
           <input type="hidden" name="form-name" value="custom-order" />
           <input type="hidden" name="bot-field" />
 
@@ -174,13 +181,46 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div><div class="footer-logo">Furnish<span>.</span>GH</div><p class="footer-desc">Premium handmade furniture crafted for modern Ghanaian living.</p></div>
-        <div><p class="footer-heading">Navigation</p><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="products.html">Products</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="custom-orders.html">Custom Orders</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-        <div><p class="footer-heading">Follow Us</p><div class="footer-social"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Instagram">ig</a><a href="#" aria-label="TikTok">tt</a></div><p class="footer-heading">Newsletter</p><form class="newsletter-form" onsubmit="return false;"><input type="email" placeholder="Your email address" /><button type="submit">Subscribe</button></form></div>
+        <div>
+          <div class="footer-logo">
+            <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771267162/5807522145226133037_121_va4olu.jpg" alt="Furnish GH Logo" class="footer-logo-img" />
+          </div>
+          <p class="footer-desc">Premium handmade furniture crafted for modern Ghanaian living.</p>
+        </div>
+        <div>
+          <p class="footer-heading">Navigation</p>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="custom-orders.html">Custom Orders</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Follow Us</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">ig</a>
+            <a href="#" aria-label="TikTok">tt</a>
+          </div>
+          <p class="footer-heading">Newsletter</p>
+          <form class="newsletter-form" onsubmit="return false;">
+            <input type="email" placeholder="Your email address" aria-label="Email" />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
       </div>
     </div>
-    <div class="footer-bar"><div class="container footer-bar-inner"><p>&copy; 2024 Furnish GH.</p><p>Proudly made in Ghana.</p></div></div>
+    <div class="footer-bar">
+      <div class="container footer-bar-inner">
+        <p>&copy; 2024 Furnish GH.</p>
+        <p>Proudly made in Ghana.</p>
+      </div>
+    </div>
   </footer>
+
   <script src="js/main.js"></script>
 </body>
 </html>
