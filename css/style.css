@@ -622,6 +622,7 @@ p { line-height: 1.8; }
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
+  object-position: center 20%;
   margin-bottom: 16px;
   filter: grayscale(20%);
   transition: var(--transition);
