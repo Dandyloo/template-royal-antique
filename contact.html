@@ -3,17 +3,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771604556/profit_acmiay.png" />
+  <link rel="apple-touch-icon" href="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771604556/profit_acmiay.png" />  
   <title>Contact — Furnish GH</title>
   <meta name="description" content="Contact Furnish GH in Accra, Ghana. Visit our showroom, call us, or send a message. WhatsApp available." />
   <meta property="og:title" content="Contact — Furnish GH" />
   <meta property="og:description" content="Get in touch with our team in Accra." />
   <meta property="og:image" content="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80" />
+  <meta property="og:url" content="https://furnishgh.netlify.app/contact.html" />
   <link rel="canonical" href="https://furnishgh.netlify.app/contact.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FurnitureStore",
+  "name": "Royal Antique Home",
+  "alternateName": "Furnish GH",
+  "url": "https://furnishgh.netlify.app",
+  "logo": "https://res.cloudinary.com/djmyiuu5k/image/upload/v1771604556/profit_acmiay.png",
+  "image": "https://res.cloudinary.com/djmyiuu5k/image/upload/v1771266346/Generated_Image_February_16_2026_-_6_23PM_kwl2q3.png",
+  "description": "Royal Antique Home imports and sells classic royal antique furniture for modern Ghanaian homes. Based in Spintex, Accra.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Spintex Road",
+    "addressLocality": "Accra",
+    "addressRegion": "Greater Accra",
+    "addressCountry": "GH"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 5.6037,
+    "longitude": -0.1870
+  },
+  "telephone": "+233200000000",
+  "email": "hello@furnishgh.com",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
+  "priceRange": "GHS 1,800 – GHS 6,200",
+  "sameAs": [
+    "https://www.instagram.com/royalantiquehome",
+    "https://www.tiktok.com/@royal.antique.hom"
+  ]
+}
+</script>
 </head>
 <body>
   <a href="https://wa.me/233200000000" target="_blank" rel="noopener" class="floating-wa" aria-label="WhatsApp">&#9742;</a>
@@ -193,10 +235,18 @@
             <a href="https://www.tiktok.com/@royal.antique.hom?_r=1&_t=ZS-945CJkR8a0L" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
           </div>
           <p class="footer-heading">Newsletter</p>
-          <form class="newsletter-form" onsubmit="return false;">
-            <input type="email" placeholder="Your email address" aria-label="Email" />
-            <button type="submit">Subscribe</button>
-          </form>
+          <form
+  class="newsletter-form"
+  name="newsletter"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field-nl"
+>
+  <input type="hidden" name="form-name" value="newsletter" />
+  <input type="hidden" name="bot-field-nl" />
+  <input type="email" name="email" placeholder="Your email address" aria-label="Email" required />
+  <button type="submit">Subscribe</button>
+</form>
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@
 
 @font-face {
   font-family: 'Semper';
-  src: url('../fonts/Semper-Bold.ttf') format('truetype');
+  src: url('../font/Semper-Bold.ttf') format('truetype');
   font-weight: 900;
   font-style: normal;
   font-display: swap;

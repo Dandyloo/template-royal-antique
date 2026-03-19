@@ -1,3 +1,4 @@
 User-agent: *
+Allow: /
 Disallow: /admin/
-Sitemap: https://yourwebsite.com/sitemap.xml
+Sitemap: https://furnishgh.netlify.app/sitemap.xml

@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771604556/profit_acmiay.png" />
+  <link rel="apple-touch-icon" href="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771604556/profit_acmiay.png" />  
   <title>Custom Orders — Furnish GH</title>
   <meta name="description" content="Commission bespoke furniture with Furnish GH. Tell us what you need and we'll build it to your exact specifications." />
   <meta property="og:title" content="Custom Orders — Furnish GH" />
   <meta property="og:description" content="Commission bespoke furniture built to your exact specifications." />
   <meta property="og:image" content="https://images.unsplash.com/photo-1565793979681-0be10902b090?w=1200&q=80" />
+  <meta property="og:url" content="https://furnishgh.netlify.app/custom-orders.html" />
   <link rel="canonical" href="https://furnishgh.netlify.app/custom-orders.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -89,7 +92,6 @@
           method="POST"
           data-netlify="true"
           netlify-honeypot="bot-field"
-          enctype="multipart/form-data"
           class="fade-in"
         >
           <input type="hidden" name="form-name" value="custom-order" />
@@ -159,9 +161,12 @@
               <input type="date" id="deliveryDate" name="deliveryDate" />
             </div>
             <div class="form-group full">
-              <label for="referenceImage">Reference Image (JPG or PNG)</label>
-              <input type="file" id="referenceImage" name="referenceImage" accept=".jpg,.jpeg,.png" />
-            </div>
+              <label>Reference Image</label>
+                <p style="font-size:0.875rem;color:var(--grey);padding:14px 16px;border:2px dashed var(--latte);border-radius:4px;line-height:1.6;">
+                After submitting, send your reference images directly on WhatsApp — 
+                <a href="https://wa.me/233200000000" target="_blank" rel="noopener" style="color:var(--burgundy);font-weight:600;">tap here to open chat</a>.
+                </p>
+            </div>  
             <div class="form-group full">
               <label for="notes">Additional Notes</label>
               <textarea id="notes" name="notes" rows="5" placeholder="Any other details, special requests, or questions..."></textarea>
@@ -207,10 +212,18 @@
             <a href="https://www.tiktok.com/@royal.antique.hom?_r=1&_t=ZS-945CJkR8a0L" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
           </div>
           <p class="footer-heading">Newsletter</p>
-          <form class="newsletter-form" onsubmit="return false;">
-            <input type="email" placeholder="Your email address" aria-label="Email" />
-            <button type="submit">Subscribe</button>
-          </form>
+          <form
+  class="newsletter-form"
+  name="newsletter"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field-nl"
+>
+  <input type="hidden" name="form-name" value="newsletter" />
+  <input type="hidden" name="bot-field-nl" />
+  <input type="email" name="email" placeholder="Your email address" aria-label="Email" required />
+  <button type="submit">Subscribe</button>
+</form>
         </div>
       </div>
     </div>

@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771604556/profit_acmiay.png" />
+  <link rel="apple-touch-icon" href="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771604556/profit_acmiay.png" />
   <title>About — Furnish GH</title>
   <meta name="description" content="Learn the story behind Furnish GH — a decade of handcrafted furniture built with Ghanaian skill and pride." />
   <meta property="og:title" content="About — Furnish GH" />
   <meta property="og:description" content="A decade of handcrafted furniture built with Ghanaian skill and pride." />
   <meta property="og:image" content="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&q=80" />
+  <meta property="og:url" content="https://furnishgh.netlify.app/about.html" />
   <link rel="canonical" href="https://furnishgh.netlify.app/about.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -180,7 +183,18 @@
           <p class="footer-heading">Follow Us</p>
           <div class="footer-social"><a href="https://web.facebook.com/profile.php?fb_profile_edit_entry_point=%7B%22click_point%22%3A%22edit_profile_button%22%2C%22feature%22%3A%22profile_header%22%7D&id=61588544905925&sk=about" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/royalantiquehome?igsh=ZGV1cjlxNjZwZ242&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.tiktok.com/@royal.antique.hom?_r=1&_t=ZS-945CJkR8a0L" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a></div>
           <p class="footer-heading">Newsletter</p>
-          <form class="newsletter-form" onsubmit="return false;"><input type="email" placeholder="Your email address" aria-label="Email" /><button type="submit">Subscribe</button></form>
+          <form
+  class="newsletter-form"
+  name="newsletter"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field-nl"
+>
+  <input type="hidden" name="form-name" value="newsletter" />
+  <input type="hidden" name="bot-field-nl" />
+  <input type="email" name="email" placeholder="Your email address" aria-label="Email" required />
+  <button type="submit">Subscribe</button>
+</form>
         </div>
       </div>
     </div>
