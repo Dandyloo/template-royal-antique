@@ -13,33 +13,3 @@
   from = "/admin"
   to = "/admin/index.html"
   status = 200
-```
-
----
-
-## 📋 Final Project Structure
-```
-royal-antique-home/
-├── index.html              ← Homepage
-├── about.html              ← About page
-├── products.html           ← Products + filter
-├── gallery.html            ← Masonry gallery + lightbox
-├── custom-orders.html      ← Custom order form
-├── testimonials.html       ← Full testimonials
-├── contact.html            ← Contact + map
-├── sitemap.xml
-├── robots.txt
-├── netlify.toml
-├── .gitignore
-├── admin/
-│   ├── index.html          ← Netlify CMS interface
-│   └── config.yml          ← CMS collections config
-├── css/
-│   └── style.css           ← Complete stylesheet
-├── js/
-│   └── main.js             ← All JavaScript
-├── _products/              ← JSON files per product (CMS-managed)
-├── _testimonials/          ← JSON files per testimonial (CMS-managed)
-├── _data/
-│   └── settings.json       ← Site settings (CMS-managed)
-└── images/                 ← Local images (optional, Cloudinary preferred)
