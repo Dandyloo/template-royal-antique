@@ -94,12 +94,22 @@
 /* ---------- Sample Data (replace with CMS data in production) ---------- */
 const SAMPLE_PRODUCTS = [
   {
-    slug: 'the-versailles-sofa',
-    title: 'The Versailles Sofa',
+    slug: 'imperial-gold-majesty-set',
+    title: 'Imperial Gold Majesty Set',
     price: 3200,
     category: 'Living Room',
-    description: 'A commanding three-seater crafted from sustainably sourced hardwood and premium linen. Designed to anchor your living room with quiet authority.',
-    image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1771266680/5807522145226133032_121_zjn1fp.jpg',
+    description: 'A warm gold-toned sofa set with elegant carvings and plush cushions. It brings a graceful, classic touch while still feeling inviting and comfortable for everyday use.',
+    image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1774275995/55_hhvuth.png',
+    instock: true,
+    featured: true
+  },
+  {
+    slug: 'imperial-silver-majesty-set',
+    title: 'Imperial Silver Majesty Set',
+    price: 3200,
+    category: 'Living Room',
+    description: 'A warm silver-toned sofa set with elegant carvings and plush cushions. It brings a graceful, classic touch while still feeling inviting and comfortable for everyday use.',
+    image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1774281113/13_b2lnrm.png',
     instock: true,
     featured: true
   },
@@ -134,6 +144,16 @@ const SAMPLE_PRODUCTS = [
     featured: false
   },
   {
+    slug: 'emperor-silver-majesty-set',
+    title: 'Emperor Silver Majesty Set',
+    price: 3200,
+    category: 'Living Room',
+    description: 'A mix of silver and gold tones in a sofa set with intricate carvings and plush cushions. It brings a graceful, classic touch while still feeling inviting and comfortable for everyday use.',
+    image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1774281113/14_v2allc.png',
+    instock: true,
+    featured: true
+  },
+  {
     slug: 'tema-wardrobe',
     title: 'Tema Wardrobe',
     price: 6200,
@@ -144,12 +164,12 @@ const SAMPLE_PRODUCTS = [
     featured: false
   },
   {
-    slug: 'pra-lounge-chair',
-    title: 'Pra Lounge Chair',
-    price: 1800,
+    slug: 'royal-midnight-elegance-set',
+    title: 'Royal Midnight Elegance Set',
+    price: 3200,
     category: 'Living Room',
-    description: 'A sculptural accent chair that makes a room. High-density foam, hand-stitched upholstery, solid beech legs.',
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80&auto=format&fit=crop',
+    description: 'A refined sofa set with deep charcoal upholstery and subtle gold detailing. Its tufted design and sculpted frame give it a rich, timeless look that adds quiet luxury to any space.',
+    image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1774280116/12_zwwicy.png',
     instock: true,
     featured: false
   }
