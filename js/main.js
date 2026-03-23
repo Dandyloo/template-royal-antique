@@ -1,5 +1,5 @@
 /* ============================================================
-   FURNISH GH — Main JavaScript
+   Royal Antique Home — Main JavaScript
    ============================================================ */
 
 /* ---------- Navbar: Scroll behaviour ---------- */
@@ -187,7 +187,7 @@ function createProductCard(product) {
   card.innerHTML = `
     <img
       src="${product.image}"
-      alt="${product.title} — ${product.category} furniture by Furnish GH"
+      alt="${product.title} — ${product.category} furniture by Royal Antique Home"
       class="product-card-img"
       loading="lazy"
     />

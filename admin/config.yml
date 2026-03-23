@@ -1,5 +1,5 @@
 # ============================================================
-# Netlify CMS Configuration — Furnish GH
+# Netlify CMS Configuration — Royal Antique Home
 # ============================================================
 backend:
   name: git-gateway

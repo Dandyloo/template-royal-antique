@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
-Sitemap: https://furnishgh.netlify.app/sitemap.xml
+Sitemap: https://royalantiquehome.netlify.app/sitemap.xml
