@@ -38,8 +38,8 @@ collections:
         options:
           - { label: "Living Room", value: "Living Room" }
           - { label: "Bedroom", value: "Bedroom" }
-          - { label: "Office", value: "Office" }
-          - { label: "Outdoor", value: "Outdoor" }
+          - { label: "Executive Office", value: "Executive Office" }
+          - { label: "Kitchen", value: "Kitchen" }
           - { label: "Custom", value: "Custom" }
       - { label: "Description", name: description, widget: text }
       - { label: "Product Image", name: image, widget: image, media_library: { config: { multiple: false } } }

@@ -123,10 +123,10 @@ const SAMPLE_PRODUCTS = [
     featured: true
   },
   {
-    slug: 'volta-office-desk',
-    title: 'Volta Office Desk',
+    slug: 'volta-Executive Office-desk',
+    title: 'Volta Executive Office Desk',
     price: 2400,
-    category: 'Office',
+    category: 'Executive Office',
     description: 'A minimal floating desk with integrated cable management and a matte black steel frame. Built for focus.',
     image: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=800&q=80&auto=format&fit=crop',
     instock: false,
