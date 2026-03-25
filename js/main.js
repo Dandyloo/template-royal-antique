@@ -10,7 +10,7 @@
     navbar.classList.toggle('scrolled', window.scrollY > 50);
   };
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll(); // Run on load
+  onScroll();
 })();
 
 /* ---------- Mobile Menu Toggle ---------- */
@@ -36,30 +36,19 @@
     document.body.style.overflow = '';
   }
 
-  // Hamburger click
   hamburger.addEventListener('click', () => {
-    if (mobileNav.classList.contains('open')) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
+    if (mobileNav.classList.contains('open')) closeMenu();
+    else openMenu();
   });
 
-  // Close button click
-  if (mobileClose) {
-    mobileClose.addEventListener('click', closeMenu);
-  }
+  if (mobileClose) mobileClose.addEventListener('click', closeMenu);
 
-  // Close on nav link click
   mobileNav.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', closeMenu);
   });
 
-  // Close on Escape
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
-      closeMenu();
-    }
+    if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeMenu();
   });
 })();
 
@@ -74,7 +63,7 @@
   });
 })();
 
-/* ---------- Scroll Animations (IntersectionObserver) ---------- */
+/* ---------- Scroll Animations ---------- */
 (function initScrollAnimations() {
   const elements = document.querySelectorAll('.fade-in');
   if (!elements.length) return;
@@ -91,7 +80,7 @@
   elements.forEach(el => observer.observe(el));
 })();
 
-/* ---------- Sample Data (replace with CMS data in production) ---------- */
+/* ---------- Fallback Sample Data ---------- */
 const SAMPLE_PRODUCTS = [
   {
     slug: 'imperial-gold-majesty-set',
@@ -144,16 +133,6 @@ const SAMPLE_PRODUCTS = [
     featured: false
   },
   {
-    slug: 'emperor-silver-majesty-set',
-    title: 'Emperor Silver Majesty Set',
-    price: 3200,
-    category: 'Living Room',
-    description: 'A mix of silver and gold tones in a sofa set with intricate carvings and plush cushions. It brings a graceful, classic touch while still feeling inviting and comfortable for everyday use.',
-    image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1774281113/14_v2allc.png',
-    instock: true,
-    featured: true
-  },
-  {
     slug: 'tema-wardrobe',
     title: 'Tema Wardrobe',
     price: 6200,
@@ -199,6 +178,48 @@ const SAMPLE_TESTIMONIALS = [
   }
 ];
 
+/* ---------- Fetch Products from CMS ---------- */
+async function fetchProducts() {
+  try {
+    const manifestRes = await fetch('/_products/manifest.json');
+    if (!manifestRes.ok) throw new Error('No manifest');
+
+    const slugs = await manifestRes.json();
+    if (!slugs.length) throw new Error('Empty manifest');
+
+    const products = await Promise.all(
+      slugs.map(slug =>
+        fetch(`/_products/${slug}.json`).then(r => r.json())
+      )
+    );
+    return products;
+  } catch (e) {
+    console.warn('CMS products not available, using sample data:', e.message);
+    return SAMPLE_PRODUCTS;
+  }
+}
+
+/* ---------- Fetch Testimonials from CMS ---------- */
+async function fetchTestimonials() {
+  try {
+    const manifestRes = await fetch('/_testimonials/manifest.json');
+    if (!manifestRes.ok) throw new Error('No manifest');
+
+    const slugs = await manifestRes.json();
+    if (!slugs.length) throw new Error('Empty manifest');
+
+    const testimonials = await Promise.all(
+      slugs.map(slug =>
+        fetch(`/_testimonials/${slug}.json`).then(r => r.json())
+      )
+    );
+    return testimonials;
+  } catch (e) {
+    console.warn('CMS testimonials not available, using sample data:', e.message);
+    return SAMPLE_TESTIMONIALS;
+  }
+}
+
 /* ---------- Render Product Card ---------- */
 function createProductCard(product) {
   const card = document.createElement('div');
@@ -214,7 +235,7 @@ function createProductCard(product) {
     <div class="product-card-body">
       <p class="product-category">${product.category}</p>
       <h3 class="product-name">${product.title}</h3>
-      <p class="product-price">GHS ${product.price.toLocaleString()}</p>
+      <p class="product-price">GHS ${Number(product.price).toLocaleString()}</p>
       <span class="product-link">View Details &rarr;</span>
     </div>
   `;
@@ -237,28 +258,39 @@ function createTestimonialCard(t) {
   return card;
 }
 
-/* ---------- Load Featured Products (Homepage) ---------- */
-function loadFeaturedProducts() {
+/* ---------- Load Featured Products ---------- */
+async function loadFeaturedProducts() {
   const container = document.getElementById('featuredProducts');
   if (!container) return;
 
+  const products = await fetchProducts();
   container.innerHTML = '';
-  const featured = SAMPLE_PRODUCTS.filter(p => p.featured).slice(0, 3);
-  featured.forEach(p => container.appendChild(createProductCard(p)));
+  const featured = products.filter(p => p.featured).slice(0, 3);
 
-  // Re-observe new elements
+  // If no featured flagged, just show first 3
+  const toShow = featured.length ? featured : products.slice(0, 3);
+  toShow.forEach(p => container.appendChild(createProductCard(p)));
   triggerObserver(container.querySelectorAll('.fade-in'));
 }
 
-/* ---------- Load All Products (Products Page) ---------- */
-function loadAllProducts(filterCategory = 'All') {
+/* ---------- Load All Products ---------- */
+async function loadAllProducts(filterCategory = 'All') {
   const container = document.getElementById('allProducts');
   if (!container) return;
 
+  // Show skeletons while loading
+  container.innerHTML = `
+    <div class="loading-skeleton"></div>
+    <div class="loading-skeleton"></div>
+    <div class="loading-skeleton"></div>
+  `;
+
+  const products = await fetchProducts();
   container.innerHTML = '';
+
   const filtered = filterCategory === 'All'
-    ? SAMPLE_PRODUCTS
-    : SAMPLE_PRODUCTS.filter(p => p.category === filterCategory);
+    ? products
+    : products.filter(p => p.category === filterCategory);
 
   if (filtered.length === 0) {
     container.innerHTML = '<p class="no-results">No products found in this category.</p>';
@@ -270,12 +302,13 @@ function loadAllProducts(filterCategory = 'All') {
 }
 
 /* ---------- Load Testimonials ---------- */
-function loadTestimonials(containerId, limit = 0) {
+async function loadTestimonials(containerId, limit = 0) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
+  const testimonials = await fetchTestimonials();
   container.innerHTML = '';
-  const items = limit > 0 ? SAMPLE_TESTIMONIALS.slice(0, limit) : SAMPLE_TESTIMONIALS;
+  const items = limit > 0 ? testimonials.slice(0, limit) : testimonials;
   items.forEach(t => container.appendChild(createTestimonialCard(t)));
   triggerObserver(container.querySelectorAll('.fade-in'));
 }
@@ -301,7 +334,6 @@ function initCategoryFilter() {
   filterBar.addEventListener('click', (e) => {
     const btn = e.target.closest('.filter-btn');
     if (!btn) return;
-
     filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     loadAllProducts(btn.dataset.filter);
@@ -318,7 +350,7 @@ function openProductModal(product) {
   document.getElementById('modalImg').alt = product.title;
   document.getElementById('modalCategory').textContent = product.category;
   document.getElementById('modalTitle').textContent = product.title;
-  document.getElementById('modalPrice').textContent = `GHS ${product.price.toLocaleString()}`;
+  document.getElementById('modalPrice').textContent = `GHS ${Number(product.price).toLocaleString()}`;
   document.getElementById('modalDesc').textContent = product.description;
 
   const stockEl = document.getElementById('modalStock');
@@ -382,10 +414,7 @@ function initLightbox() {
     lightboxImg.alt = img.alt;
   }
 
-  items.forEach((item, i) => {
-    item.addEventListener('click', () => openLightbox(i));
-  });
-
+  items.forEach((item, i) => item.addEventListener('click', () => openLightbox(i)));
   if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
   if (prevBtn) prevBtn.addEventListener('click', () => navigate(-1));
   if (nextBtn) nextBtn.addEventListener('click', () => navigate(1));
@@ -402,7 +431,7 @@ function initLightbox() {
   });
 }
 
-/* ---------- Form Handling (Netlify Forms) ---------- */
+/* ---------- Form Handling ---------- */
 function initForms() {
   document.querySelectorAll('form[data-netlify]').forEach(form => {
     form.addEventListener('submit', async (e) => {
@@ -439,7 +468,7 @@ function initForms() {
   });
 }
 
-/* ---------- Init on DOM Ready ---------- */
+/* ---------- Init ---------- */
 document.addEventListener('DOMContentLoaded', () => {
   loadFeaturedProducts();
   loadTestimonials('testimonialsPreview', 3);
