@@ -38,6 +38,7 @@ collections:
         options:
           - { label: "Living Room", value: "Living Room" }
           - { label: "Bedroom", value: "Bedroom" }
+          - { label: "Dining Room", value: "Dining Room" }
           - { label: "Executive Office", value: "Executive Office" }
           - { label: "Kitchen", value: "Kitchen" }
           - { label: "Custom", value: "Custom" }

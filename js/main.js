@@ -123,7 +123,7 @@ const SAMPLE_PRODUCTS = [
     featured: true
   },
   {
-    slug: 'volta-Executive Office-desk',
+    slug: 'volta-executive-office-desk',
     title: 'Volta Executive Office Desk',
     price: 2400,
     category: 'Executive Office',
@@ -235,7 +235,6 @@ function createProductCard(product) {
     <div class="product-card-body">
       <p class="product-category">${product.category}</p>
       <h3 class="product-name">${product.title}</h3>
-      <p class="product-price">GHS ${Number(product.price).toLocaleString()}</p>
       <span class="product-link">View Details &rarr;</span>
     </div>
   `;
@@ -350,7 +349,6 @@ function openProductModal(product) {
   document.getElementById('modalImg').alt = product.title;
   document.getElementById('modalCategory').textContent = product.category;
   document.getElementById('modalTitle').textContent = product.title;
-  document.getElementById('modalPrice').textContent = `GHS ${Number(product.price).toLocaleString()}`;
   document.getElementById('modalDesc').textContent = product.description;
 
   const stockEl = document.getElementById('modalStock');
