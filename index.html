@@ -59,6 +59,11 @@
 </script>
 </head>
 <body>
+    <!-- Announcement Banner -->
+  <div class="announcement-banner" id="announcementBanner" role="alert">
+  <span id="bannerMessage"></span>
+  <button class="announcement-banner-close" id="bannerClose" aria-label="Close banner">&times;</button>
+  </div>
 
   <!-- Floating WhatsApp -->
   <a href="https://wa.me/233501505501" target="_blank" rel="noopener" class="floating-wa" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -102,14 +107,14 @@
 
   <main>
     <!-- Hero -->
-    <section class="hero">
-      <div class="hero-bg"></div>
+    <section class="hero" id="heroSection">
+      <div class="hero-bg" id="heroBg"></div>
       <div class="hero-overlay"></div>
       <div class="container">
         <div class="hero-content">
           <span class="hero-label">Royal Antique Home</span>
-          <h1 class="hero-title">Furniture Fit <br>For Royalty</h1>
-          <p class="hero-sub">Timeless antique masterpieces handcrafted to bring palace elegance into your home.</p>
+          <h1 class="hero-title" id="heroTitle">Furniture Fit <br>For Royalty</h1>
+          <p class="hero-sub" id="heroSub">Timeless antique masterpieces handcrafted to bring palace elegance into your home.</p>
           <div class="hero-btns">
             <a href="products.html" class="btn btn-primary">Explore Collection</a>
             <a href="custom-orders.html" class="btn btn-ghost">Custom Order</a>
@@ -244,5 +249,33 @@
     });
   }
 </script>
+<script>
+    async function loadHero() {
+      try {
+        const res = await fetch('/_data/hero.json');
+        if (!res.ok) throw new Error('No hero data');
+        const hero = await res.json();
+
+        const title = document.getElementById('heroTitle');
+        const sub = document.getElementById('heroSub');
+        const bg = document.getElementById('heroBg');
+
+        if (hero.title_line1 && hero.title_line2) {
+          title.innerHTML = `${hero.title_line1} <br>${hero.title_line2}`;
+        }
+        if (hero.subtitle) {
+          sub.textContent = hero.subtitle;
+        }
+        if (hero.bg_image) {
+          bg.style.backgroundImage = `url('${hero.bg_image}')`;
+        }
+      } catch {
+        // Falls back to hardcoded HTML — no action needed
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadHero);
+  </script>
+</body>
 </body>
 </html>

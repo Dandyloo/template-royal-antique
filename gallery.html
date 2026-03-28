@@ -19,6 +19,13 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+      <!-- Announcement Banner -->
+  <div class="announcement-banner" id="announcementBanner" role="alert">
+  <span id="bannerMessage"></span>
+  <button class="announcement-banner-close" id="bannerClose" aria-label="Close banner">&times;</button>
+  </div>
+
+  <!-- Floating WhatsApp -->
   <a href="https://wa.me/233501505501" target="_blank" rel="noopener" class="floating-wa" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
   <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
@@ -54,7 +61,7 @@
     </div>
   </header>
 
-  <main>
+<main>
     <section class="page-hero">
       <div class="container">
         <h1>Our Work</h1>
@@ -64,43 +71,14 @@
 
     <section class="section-pad">
       <div class="container">
-        <div class="gallery-grid fade-in">
-
-          <div class="gallery-item">
-            <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771603188/IMG_2672_xf2mrt.png" alt="Lagos Sofa — living room furniture by Royal Antique Home" loading="lazy" />
-            <div class="gallery-overlay"></div>
-          </div>
-
-          <div class="gallery-item">
-            <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771603187/IMG_2651.JPG_jmzy9r.jpg" alt="Modern living room interior by Royal Antique Home" loading="lazy" />
-            <div class="gallery-overlay"></div>
-          </div>
-
-          <div class="gallery-item">
-            <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771603186/IMG_2671_vl3hgy.png" alt="Accra Bed Frame in master bedroom" loading="lazy" />
-            <div class="gallery-overlay"></div>
-          </div>
-
-          <div class="gallery-item">
-            <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771603186/IMG_2650.JPG_p104xo.jpg" alt="Kumasi Dining Table — solid teak with six chairs" loading="lazy" />
-            <div class="gallery-overlay"></div>
-          </div>
-
-          <div class="gallery-item">
-            <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771603184/IMG_2481.JPG_o4oup8.jpg" alt="Pra Lounge Chair in reading corner" loading="lazy" />
-            <div class="gallery-overlay"></div>
-          </div>
-
-          <div class="gallery-item">
-            <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771603182/IMG_2670_hj7klg.avif" alt="Royal Antique Home showroom — Accra, Ghana" loading="lazy" />
-            <div class="gallery-overlay"></div>
-          </div>
-
-          <div class="gallery-item">
-            <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771603183/IMG_2480.JPG_vs955k.jpg" alt="Tema Wardrobe — floor to ceiling oak veneer" loading="lazy" />
-            <div class="gallery-overlay"></div>
-          </div>
-
+        <div class="gallery-grid fade-in" id="galleryGrid">
+          <!-- Skeleton loaders while images load -->
+          <div class="loading-skeleton" style="height:260px;"></div>
+          <div class="loading-skeleton" style="height:340px;"></div>
+          <div class="loading-skeleton" style="height:260px;"></div>
+          <div class="loading-skeleton" style="height:300px;"></div>
+          <div class="loading-skeleton" style="height:260px;"></div>
+          <div class="loading-skeleton" style="height:320px;"></div>
         </div>
       </div>
     </section>
@@ -171,6 +149,54 @@
     <button class="lightbox-arrow lightbox-next" aria-label="Next image">&#8594;</button>
   </div>
 
-  <script src="js/main.js"></script>
+<script src="js/main.js"></script>
+  <script>
+    // Fallback gallery images (shown when CMS gallery is empty)
+    const SAMPLE_GALLERY = [
+      { title: 'Living Room Display', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1771603188/IMG_2672_xf2mrt.png', alt: 'Living room furniture by Royal Antique Home', order: 1 },
+      { title: 'Showroom Interior', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1771603187/IMG_2651.JPG_jmzy9r.jpg', alt: 'Modern living room interior by Royal Antique Home', order: 2 },
+      { title: 'Bedroom Display', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1771603186/IMG_2671_vl3hgy.png', alt: 'Bed Frame in master bedroom', order: 3 },
+      { title: 'Dining Set', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1771603186/IMG_2650.JPG_p104xo.jpg', alt: 'Dining Table with chairs', order: 4 },
+      { title: 'Lounge Chair', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1771603184/IMG_2481.JPG_o4oup8.jpg', alt: 'Lounge Chair in reading corner', order: 5 },
+      { title: 'Showroom', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1771603182/IMG_2670_hj7klg.avif', alt: 'Royal Antique Home showroom Accra', order: 6 },
+      { title: 'Wardrobe Display', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1771603183/IMG_2480.JPG_vs955k.jpg', alt: 'Floor to ceiling wardrobe', order: 7 },
+    ];
+
+    async function loadGallery() {
+      const grid = document.getElementById('galleryGrid');
+      let items = [];
+
+      try {
+        const res = await fetch('/_gallery/manifest.json');
+        if (!res.ok) throw new Error('No manifest');
+        const slugs = await res.json();
+        if (!slugs.length) throw new Error('Empty');
+
+        items = await Promise.all(
+          slugs.map(slug => fetch(`/_gallery/${slug}.json`).then(r => r.json()))
+        );
+        // Sort by order field
+        items.sort((a, b) => (a.order || 0) - (b.order || 0));
+      } catch {
+        items = SAMPLE_GALLERY;
+      }
+
+      grid.innerHTML = '';
+      items.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.alt || item.title}" loading="lazy" />
+          <div class="gallery-overlay"></div>
+        `;
+        grid.appendChild(div);
+      });
+
+      // Re-init lightbox with new items
+      initLightbox();
+    }
+
+    document.addEventListener('DOMContentLoaded', loadGallery);
+  </script>
 </body>
 </html>

@@ -466,8 +466,37 @@ function initForms() {
   });
 }
 
+/* ---------- Announcement Banner ---------- */
+async function loadBanner() {
+  try {
+    const res = await fetch('/_data/banner.json');
+    if (!res.ok) throw new Error('No banner data');
+    const banner = await res.json();
+
+    if (!banner.active || !banner.message) return;
+
+    const el = document.getElementById('announcementBanner');
+    const msg = document.getElementById('bannerMessage');
+    const closeBtn = document.getElementById('bannerClose');
+
+    if (!el || !msg) return;
+
+    msg.textContent = banner.message;
+    el.classList.add('active', banner.type || 'info');
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        el.style.display = 'none';
+      });
+    }
+  } catch {
+    // No banner data — silently fail
+  }
+}
+
 /* ---------- Init ---------- */
 document.addEventListener('DOMContentLoaded', () => {
+  loadBanner(); 
   loadFeaturedProducts();
   loadTestimonials('testimonialsPreview', 3);
   loadTestimonials('allTestimonials', 0);

@@ -47,6 +47,36 @@ collections:
       - { label: "In Stock", name: instock, widget: boolean, default: true }
       - { label: "Featured on Homepage", name: featured, widget: boolean, default: false }
 
+  # --- Gallery ---
+  - name: gallery
+    label: Gallery
+    label_singular: Gallery Image
+    folder: _gallery
+    create: true
+    slug: "{{slug}}"
+    extension: json
+    format: json
+    fields:
+      - { label: "Title / Caption", name: title, widget: string }
+      - { label: "Image", name: image, widget: image, media_library: { config: { multiple: false } } }
+      - { label: "Alt Text", name: alt, widget: string, hint: "Describe the image for accessibility and SEO" }
+      - { label: "Sort Order", name: order, widget: number, value_type: int, default: 0, hint: "Lower numbers appear first" }
+
+  # --- Team ---
+  - name: team
+    label: Team
+    label_singular: Team Member
+    folder: _team
+    create: true
+    slug: "{{slug}}"
+    extension: json
+    format: json
+    fields:
+      - { label: "Full Name", name: name, widget: string }
+      - { label: "Job Title / Role", name: role, widget: string }
+      - { label: "Photo", name: image, widget: image, media_library: { config: { multiple: false } } }
+      - { label: "Sort Order", name: order, widget: number, value_type: int, default: 0, hint: "Lower numbers appear first" }
+
   # --- Testimonials ---
   - name: testimonials
     label: Testimonials
@@ -81,3 +111,27 @@ collections:
           - { label: "Facebook URL", name: facebook_url, widget: string, required: false }
           - { label: "Instagram URL", name: instagram_url, widget: string, required: false }
           - { label: "TikTok URL", name: tiktok_url, widget: string, required: false }
+
+      - label: "Homepage Hero"
+        name: hero
+        file: _data/hero.json
+        fields:
+          - { label: "Hero Title Line 1", name: title_line1, widget: string, default: "Furniture Fit" }
+          - { label: "Hero Title Line 2", name: title_line2, widget: string, default: "For Royalty" }
+          - { label: "Hero Subtitle", name: subtitle, widget: string, default: "Timeless antique masterpieces handcrafted to bring palace elegance into your home." }
+          - { label: "Background Image", name: bg_image, widget: image, media_library: { config: { multiple: false } } }
+
+      - label: "Announcement Banner"
+        name: banner
+        file: _data/banner.json
+        fields:
+          - { label: "Show Banner", name: active, widget: boolean, default: false }
+          - { label: "Banner Message", name: message, widget: string, required: false, hint: "e.g. New collection arriving soon! Visit our showroom." }
+          - label: "Banner Type"
+            name: type
+            widget: select
+            default: "info"
+            options:
+              - { label: "Info (Gold)", value: "info" }
+              - { label: "Success (Green)", value: "success" }
+              - { label: "Alert (Red)", value: "alert" }

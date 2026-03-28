@@ -22,6 +22,13 @@
   </style>
 </head>
 <body>
+    <!-- Announcement Banner -->
+  <div class="announcement-banner" id="announcementBanner" role="alert">
+  <span id="bannerMessage"></span>
+  <button class="announcement-banner-close" id="bannerClose" aria-label="Close banner">&times;</button>
+  </div>
+
+
   <a href="https://wa.me/233501505501" target="_blank" rel="noopener" class="floating-wa" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
   <!-- Mobile Nav — matches homepage structure -->
@@ -129,32 +136,12 @@
     <section class="team-section">
       <div class="container">
         <h2 class="section-heading fade-in">The People Behind the Craft</h2>
-        <div class="team-grid">
-          <div class="team-card fade-in fade-in-delay-1">
-            <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771609931/2S8A0501_cxo5qy.jpg" alt="Mr. Ekow Nkrumah Bentum, Mananging Director" loading="lazy" />
-            <p class="team-name">Mr. Ekow Nkrumah-Bentum</p>
-            <p class="team-role">CEO & Founder</p>
-          </div>
-          <div class="team-card fade-in fade-in-delay-2">
-            <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/c_crop,ar_1:1/v1771610404/772A1611_wydskc.jpg" alt="Mr. Sylvester Annan Mensah, General Manager" loading="lazy" />
-            <p class="team-name">Mr. Sylvester Annan Mensah</p>
-            <p class="team-role">General Manager</p>
-          </div>
-          <div class="team-card fade-in fade-in-delay-1">
-            <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/v1774701283/IMG_4223.JPG_jmbcyk.jpg" alt="Victoria Quaye, Manager" loading="lazy" />
-            <p class="team-name">Victoria Quaye</p>
-            <p class="team-role">Manager</p>
-          </div>
-          <div class="team-card fade-in fade-in-delay-3">
-            <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/v1774701230/IMG_4244.JPG_m7o8pp.jpg" alt="John Afful, Human Resources" loading="lazy" />
-            <p class="team-name">John Afful</p>
-            <p class="team-role">Human Resources (HR)</p>
-          </div>
-          <div class="team-card fade-in fade-in-delay-3">
-            <img src="https://res.cloudinary.com/djmyiuu5k/image/upload/v1771612460/772A1633_hqyvge.jpg" alt="Noel Elorm Nkrumah-Bentum, Production Manager" loading="lazy" />
-            <p class="team-name">Noel Elorm Nkrumah-Bentum</p>
-            <p class="team-role">Production Manager</p>
-          </div>
+        <div class="team-grid" id="teamGrid">
+          <!-- Skeletons while loading -->
+          <div class="loading-skeleton" style="height:320px;border-radius:0;"></div>
+          <div class="loading-skeleton" style="height:320px;border-radius:0;"></div>
+          <div class="loading-skeleton" style="height:320px;border-radius:0;"></div>
+          <div class="loading-skeleton" style="height:320px;border-radius:0;"></div>
         </div>
       </div>
     </section>
@@ -216,6 +203,68 @@
       </div>
     </div>
   </div>
-  <script src="js/main.js"></script>
+
+ <script src="js/main.js"></script>
+  <script>
+    // Fallback team data
+    const SAMPLE_TEAM = [
+      { name: 'Mr. Ekow Nkrumah-Bentum', role: 'CEO & Founder', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1771609931/2S8A0501_cxo5qy.jpg', order: 1 },
+      { name: 'Mr. Sylvester Annan Mensah', role: 'General Manager', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/c_crop,ar_1:1/v1771610404/772A1611_wydskc.jpg', order: 2 },
+      { name: 'Victoria Quaye', role: 'Manager', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1774701283/IMG_4223.JPG_jmbcyk.jpg', order: 3 },
+      { name: 'John Afful', role: 'Human Resources (HR)', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1774701230/IMG_4244.JPG_m7o8pp.jpg', order: 4 },
+      { name: 'Noel Elorm Nkrumah-Bentum', role: 'Production Manager', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1771612460/772A1633_hqyvge.jpg', order: 5 },
+    ];
+
+    async function loadTeam() {
+      const grid = document.getElementById('teamGrid');
+      let members = [];
+
+      try {
+        const res = await fetch('/_team/manifest.json');
+        if (!res.ok) throw new Error('No manifest');
+        const slugs = await res.json();
+        if (!slugs.length) throw new Error('Empty');
+
+        members = await Promise.all(
+          slugs.map(slug => fetch(`/_team/${slug}.json`).then(r => r.json()))
+        );
+        members.sort((a, b) => (a.order || 0) - (b.order || 0));
+      } catch {
+        members = SAMPLE_TEAM;
+      }
+
+      grid.innerHTML = '';
+      members.forEach((member, i) => {
+        const delays = ['fade-in-delay-1', 'fade-in-delay-2', 'fade-in-delay-3'];
+        const delay = delays[i % 3];
+        const card = document.createElement('div');
+        card.className = `team-card fade-in ${delay}`;
+        card.innerHTML = `
+          <img
+            src="${member.image}"
+            alt="${member.name}, ${member.role}"
+            loading="lazy"
+          />
+          <p class="team-name">${member.name}</p>
+          <p class="team-role">${member.role}</p>
+        `;
+        grid.appendChild(card);
+      });
+
+      // Trigger scroll animations on new elements
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      grid.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    }
+
+    document.addEventListener('DOMContentLoaded', loadTeam);
+  </script>
+</body>
 </body>
 </html>
