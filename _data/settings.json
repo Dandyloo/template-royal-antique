@@ -1,12 +1,12 @@
 {
-  "business_name": "Royal Antique Home",
-  "tagline": "Live like royalty.",
-  "phone": "+233244377967",
-  "whatsapp": "233501505501",
-  "email": "hello@royalantiquehome.com",
-  "address": "Spintex Road, Accra, Greater Accra, Ghana",
-  "hours": "Monday – Saturday: 9am – 6pm",
-  "facebook_url": "",
   "instagram_url": "https://www.instagram.com/royalantiquehome",
-  "tiktok_url": "https://www.tiktok.com/@royal.antique.hom"
+  "tiktok_url": "https://www.tiktok.com/@royal.antique.hom",
+  "business_name": "Royal Antique Home",
+  "phone": "+233244377967",
+  "tagline": "Live like royalty.",
+  "hours": "Monday – Saturday: 9am – 6pm",
+  "whatsapp": "+233501505501",
+  "address": "Spintex Road, Accra, Greater Accra, Ghana",
+  "facebook_url": "https://www.facebook.com/share/1Aienxid6v/",
+  "email": "hello@royalantiquehome.com"
 }
