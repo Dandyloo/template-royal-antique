@@ -9,8 +9,8 @@ backend:
 media_library:
   name: cloudinary
   config:
-    cloud_name: YOUR_CLOUD_NAME
-    api_key: YOUR_CLOUDINARY_API_KEY
+    cloud_name: djmyiuu5k
+    api_key: 617421534619818
 
 media_folder: images
 public_folder: /images
