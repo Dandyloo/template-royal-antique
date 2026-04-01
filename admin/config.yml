@@ -1,9 +1,8 @@
-# ============================================================
-# Netlify CMS Configuration — Royal Antique Home
-# ============================================================
 backend:
-  name: git-gateway
+  name: github
+  repo: Dandyloo/template-royal-antique
   branch: main
+  base_url: https://auth.decapcms.org
 
 # Cloudinary Media Library
 media_library:
