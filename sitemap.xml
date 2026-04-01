@@ -8,35 +8,3 @@
   <url><loc>https://royalantiquehome.netlify.app/testimonials.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://royalantiquehome.netlify.app/contact.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
-```
-
-**`robots.txt`:**
-```
-User-agent: *
-Allow: /
-Disallow: /admin/
-Sitemap: https://royalantiquehome.netlify.app/sitemap.xml
-```
-
-**`.gitignore`:**
-```
-# OS
-.DS_Store
-Thumbs.db
-
-# Editor
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Node (if used locally)
-node_modules/
-npm-debug.log
-
-# Netlify
-.netlify/
-
-# Environment
-.env
-.env.local
