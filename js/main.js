@@ -183,14 +183,10 @@ async function fetchProducts() {
   try {
     const manifestRes = await fetch('/_products/manifest.json');
     if (!manifestRes.ok) throw new Error('No manifest');
-
     const slugs = await manifestRes.json();
     if (!slugs.length) throw new Error('Empty manifest');
-
     const products = await Promise.all(
-      slugs.map(slug =>
-        fetch(`/_products/${slug}.json`).then(r => r.json())
-      )
+      slugs.map(slug => fetch(`/_products/${slug}.json`).then(r => r.json()))
     );
     return products;
   } catch (e) {
@@ -204,14 +200,10 @@ async function fetchTestimonials() {
   try {
     const manifestRes = await fetch('/_testimonials/manifest.json');
     if (!manifestRes.ok) throw new Error('No manifest');
-
     const slugs = await manifestRes.json();
     if (!slugs.length) throw new Error('Empty manifest');
-
     const testimonials = await Promise.all(
-      slugs.map(slug =>
-        fetch(`/_testimonials/${slug}.json`).then(r => r.json())
-      )
+      slugs.map(slug => fetch(`/_testimonials/${slug}.json`).then(r => r.json()))
     );
     return testimonials;
   } catch (e) {
@@ -261,12 +253,9 @@ function createTestimonialCard(t) {
 async function loadFeaturedProducts() {
   const container = document.getElementById('featuredProducts');
   if (!container) return;
-
   const products = await fetchProducts();
   container.innerHTML = '';
   const featured = products.filter(p => p.featured).slice(0, 3);
-
-  // If no featured flagged, just show first 3
   const toShow = featured.length ? featured : products.slice(0, 3);
   toShow.forEach(p => container.appendChild(createProductCard(p)));
   triggerObserver(container.querySelectorAll('.fade-in'));
@@ -276,26 +265,20 @@ async function loadFeaturedProducts() {
 async function loadAllProducts(filterCategory = 'All') {
   const container = document.getElementById('allProducts');
   if (!container) return;
-
-  // Show skeletons while loading
   container.innerHTML = `
     <div class="loading-skeleton"></div>
     <div class="loading-skeleton"></div>
     <div class="loading-skeleton"></div>
   `;
-
   const products = await fetchProducts();
   container.innerHTML = '';
-
   const filtered = filterCategory === 'All'
     ? products
     : products.filter(p => p.category === filterCategory);
-
   if (filtered.length === 0) {
     container.innerHTML = '<p class="no-results">No products found in this category.</p>';
     return;
   }
-
   filtered.forEach(p => container.appendChild(createProductCard(p)));
   triggerObserver(container.querySelectorAll('.fade-in'));
 }
@@ -304,7 +287,6 @@ async function loadAllProducts(filterCategory = 'All') {
 async function loadTestimonials(containerId, limit = 0) {
   const container = document.getElementById(containerId);
   if (!container) return;
-
   const testimonials = await fetchTestimonials();
   container.innerHTML = '';
   const items = limit > 0 ? testimonials.slice(0, limit) : testimonials;
@@ -329,7 +311,6 @@ function triggerObserver(elements) {
 function initCategoryFilter() {
   const filterBar = document.querySelector('.filter-bar');
   if (!filterBar) return;
-
   filterBar.addEventListener('click', (e) => {
     const btn = e.target.closest('.filter-btn');
     if (!btn) return;
@@ -350,11 +331,9 @@ function openProductModal(product) {
   document.getElementById('modalCategory').textContent = product.category;
   document.getElementById('modalTitle').textContent = product.title;
   document.getElementById('modalDesc').textContent = product.description;
-
   const stockEl = document.getElementById('modalStock');
   stockEl.textContent = product.instock ? 'In Stock' : 'Out of Stock';
   stockEl.className = 'stock-badge ' + (product.instock ? 'in-stock' : 'out-of-stock');
-
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', false);
   document.body.style.overflow = 'hidden';
@@ -381,7 +360,6 @@ if (modal) {
 function initLightbox() {
   const lightbox = document.getElementById('lightbox');
   if (!lightbox) return;
-
   const lightboxImg = lightbox.querySelector('.lightbox-img');
   const closeBtn = lightbox.querySelector('.lightbox-close');
   const prevBtn = lightbox.querySelector('.lightbox-prev');
@@ -416,11 +394,7 @@ function initLightbox() {
   if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
   if (prevBtn) prevBtn.addEventListener('click', () => navigate(-1));
   if (nextBtn) nextBtn.addEventListener('click', () => navigate(1));
-
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
-  });
-
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('open')) return;
     if (e.key === 'Escape') closeLightbox();
@@ -429,31 +403,35 @@ function initLightbox() {
   });
 }
 
-/* ---------- Form Handling ---------- */
+/* ---------- Formspree Form Handling ---------- */
 function initForms() {
-  document.querySelectorAll('form[data-netlify]').forEach(form => {
+  document.querySelectorAll('form[data-formspree]').forEach(form => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = form.querySelector('[type="submit"]');
       const successMsg = form.querySelector('.form-success');
       const original = submitBtn.textContent;
+      const endpoint = form.getAttribute('data-formspree');
 
       submitBtn.textContent = 'Sending...';
       submitBtn.disabled = true;
 
       try {
         const data = new FormData(form);
-        const body = new URLSearchParams(data).toString();
-        await fetch('/', {
+        const res = await fetch(endpoint, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body
+          body: data,
+          headers: { 'Accept': 'application/json' }
         });
 
-        form.reset();
-        if (successMsg) {
-          successMsg.style.display = 'block';
-          setTimeout(() => { successMsg.style.display = 'none'; }, 6000);
+        if (res.ok) {
+          form.reset();
+          if (successMsg) {
+            successMsg.style.display = 'block';
+            setTimeout(() => { successMsg.style.display = 'none'; }, 6000);
+          }
+        } else {
+          throw new Error('Server error');
         }
       } catch (err) {
         console.error('Form error:', err);
@@ -472,22 +450,15 @@ async function loadBanner() {
     const res = await fetch('/_data/banner.json');
     if (!res.ok) throw new Error('No banner data');
     const banner = await res.json();
-
     if (!banner.active || !banner.message) return;
-
     const el = document.getElementById('announcementBanner');
     const msg = document.getElementById('bannerMessage');
     const closeBtn = document.getElementById('bannerClose');
-
     if (!el || !msg) return;
-
     msg.textContent = banner.message;
     el.classList.add('active', banner.type || 'info');
-
     if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        el.style.display = 'none';
-      });
+      closeBtn.addEventListener('click', () => { el.style.display = 'none'; });
     }
   } catch {
     // No banner data — silently fail
@@ -496,7 +467,7 @@ async function loadBanner() {
 
 /* ---------- Init ---------- */
 document.addEventListener('DOMContentLoaded', () => {
-  loadBanner(); 
+  loadBanner();
   loadFeaturedProducts();
   loadTestimonials('testimonialsPreview', 3);
   loadTestimonials('allTestimonials', 0);
