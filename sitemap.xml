@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://template-royal-antique.pages.dev/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://template-royal-antique.pages.dev/about.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://template-royal-antique.pages.dev/products.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://template-royal-antique.pages.dev/gallery.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://template-royal-antique.pages.dev/custom-orders.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://template-royal-antique.pages.dev/testimonials.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://template-royal-antique.pages.dev/contact.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://royalantiquehome.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://royalantiquehome.com/about.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://royalantiquehome.com/products.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://royalantiquehome.com/gallery.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://royalantiquehome.com/custom-orders.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://royalantiquehome.com/testimonials.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://royalantiquehome.com/contact.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
-Sitemap: https://template-royal-antique.pages.dev/sitemap.xml
+Sitemap: https://royalantiquehome.com/sitemap.xml
