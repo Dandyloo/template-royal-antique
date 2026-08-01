@@ -4,9 +4,78 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Royal Antique Home — Content Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://media-library.cloudinary.com/global/all.js" type="text/javascript"></script>
+  <style>
+    /* ===== Royal Antique Home — CMS brand theme ===== */
+    :root {
+      --ra-burgundy: #76152B;
+      --ra-burgundy-dark: #4d0e1c;
+      --ra-brown: #422D27;
+      --ra-latte: #F3E3CB;
+      --ra-cortado: #E7CDA2;
+      --ra-froth: #F8F4F1;
+    }
+    body, input, textarea, select, button {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    }
+    /* Top nav bar */
+    header[class*="TopBarContainer"], div[class*="AppHeader"] {
+      background: linear-gradient(135deg, var(--ra-burgundy), var(--ra-burgundy-dark)) !important;
+    }
+    /* Buttons */
+    button[class*="Button"][class*="primary"], a[class*="Button"][class*="primary"] {
+      background-color: var(--ra-burgundy) !important;
+      border-radius: 6px !important;
+    }
+    button[class*="Button"][class*="primary"]:hover {
+      background-color: var(--ra-burgundy-dark) !important;
+    }
+    /* Sidebar / nav links */
+    nav a[class*="SidebarListItem"][aria-current="page"],
+    a[class*="SidebarListItem"]:hover {
+      color: var(--ra-burgundy) !important;
+      border-color: var(--ra-burgundy) !important;
+    }
+    /* Login screen */
+    div[class*="LoginButton"], button[class*="LoginButton"] {
+      background-color: var(--ra-burgundy) !important;
+    }
+    div[class*="StyledApp"] {
+      background: var(--ra-froth) !important;
+    }
+    /* Status pill accents (drafts/review) */
+    span[class*="StatusButton"] {
+      border-color: var(--ra-cortado) !important;
+    }
+    /* Card / editor accents */
+    div[class*="CardTop"] {
+      border-top: 3px solid var(--ra-burgundy) !important;
+    }
+    h1, h2, h3, [class*="Heading"] {
+      color: var(--ra-brown) !important;
+    }
+    #ra-bulk-link {
+      position: fixed;
+      top: 64px;
+      right: 16px;
+      z-index: 9999;
+      background: var(--ra-burgundy);
+      color: #fff !important;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      box-shadow: 0 4px 14px rgba(66,45,39,0.25);
+    }
+    #ra-bulk-link:hover { background: var(--ra-burgundy-dark); }
+  </style>
 </head>
 <body>
+  <a id="ra-bulk-link" href="/admin/bulk-manager.html">🗑 Bulk Delete</a>
   <script src="https://unpkg.com/decap-cms@3.3.3/dist/decap-cms.js"></script>
 </body>
 </html>

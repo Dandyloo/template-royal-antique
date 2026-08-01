@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Royal Antique Home — Bulk Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ra-burgundy: #76152B;
+    --ra-burgundy-dark: #4d0e1c;
+    --ra-brown: #422D27;
+    --ra-latte: #F3E3CB;
+    --ra-cortado: #E7CDA2;
+    --ra-froth: #F8F4F1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--ra-froth);
+    color: var(--ra-brown);
+  }
+  header {
+    background: linear-gradient(135deg, var(--ra-burgundy), var(--ra-burgundy-dark));
+    color: #fff;
+    padding: 18px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header h1 {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 600;
+  }
+  header a {
+    color: var(--ra-latte);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  header a:hover { text-decoration: underline; }
+  main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 24px rgba(66,45,39,0.08);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  select, button {
+    font-family: inherit;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid var(--ra-cortado);
+    padding: 9px 14px;
+    background: #fff;
+    color: var(--ra-brown);
+    cursor: pointer;
+  }
+  button.primary {
+    background: var(--ra-burgundy);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+  }
+  button.primary:hover { background: var(--ra-burgundy-dark); }
+  button.danger {
+    background: var(--ra-burgundy);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+  }
+  button.danger:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  button:not(.primary):not(.danger):hover {
+    border-color: var(--ra-burgundy);
+  }
+  .status {
+    font-size: 13px;
+    color: #888;
+    margin-left: auto;
+  }
+  ul.entries {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--ra-froth);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  ul.entries li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--ra-froth);
+  }
+  ul.entries li:last-child { border-bottom: none; }
+  ul.entries li:hover { background: var(--ra-froth); }
+  ul.entries input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--ra-burgundy);
+  }
+  ul.entries img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+    background: var(--ra-froth);
+  }
+  ul.entries .name {
+    font-weight: 600;
+    flex: 1;
+  }
+  ul.entries .meta {
+    font-size: 12px;
+    color: #888;
+  }
+  .empty, .loading {
+    padding: 30px;
+    text-align: center;
+    color: #888;
+  }
+  .banner {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  .banner.error { background: #fbe4e4; color: #76152B; }
+  .banner.success { background: #e6f4ea; color: #1b5e20; }
+  .banner.info { background: var(--ra-froth); color: var(--ra-brown); }
+  .connect-box {
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .connect-box p { color: #888; max-width: 420px; margin: 8px auto 24px; }
+  .tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--ra-froth);
+  }
+  .tabs button {
+    border: none;
+    background: transparent;
+    border-radius: 0;
+    padding: 10px 18px;
+    font-weight: 600;
+    color: #999;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+  }
+  .tabs button.active {
+    color: var(--ra-burgundy);
+    border-bottom: 2px solid var(--ra-burgundy);
+  }
+  .tabs button:hover:not(.active) { color: var(--ra-brown); }
+  .publish-btn {
+    background: #1b6e3c;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+  }
+  .publish-btn:hover { background: #145a30; }
+  .publish-btn:disabled { background: #ccc; cursor: not-allowed; }
+  ul.entries .status-pill {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background: var(--ra-latte);
+    color: var(--ra-brown);
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Royal Antique Home — Bulk Manager</h1>
+  <a href="/admin/">← Back to Content Manager</a>
+</header>
+<main>
+  <div id="app"></div>
+</main>
+
+<script>
+// ===== Config — must match admin/config.yml =====
+const REPO = "Dandyloo/template-royal-antique";
+const BRANCH = "main";
+const AUTH_BASE_URL = "https://royal-antique-cms-auth.emmanuelkdntim1.workers.dev";
+
+const COLLECTIONS = {
+  products: { folder: "_products", label: "Products", titleField: "title" },
+  gallery: { folder: "_gallery", label: "Gallery", titleField: "title" },
+  team: { folder: "_team", label: "Team", titleField: "name" },
+  testimonials: { folder: "_testimonials", label: "Testimonials", titleField: "name" },
+};
+
+let token = localStorage.getItem("ra_bulk_token") || null;
+let currentTab = "delete"; // "delete" | "publish"
+let currentCollection = "products";
+let entries = [];
+let selected = new Set();
+
+let pendingPRs = [];
+let selectedPRs = new Set();
+
+const app = document.getElementById("app");
+
+function render() {
+  if (!token) {
+    app.innerHTML = `
+      <div class="card connect-box">
+        <h2>Connect to GitHub</h2>
+        <p>Sign in with GitHub to manage content, bulk-delete, and bulk-publish. This uses the same login as the Content Manager.</p>
+        <button class="primary" id="connect-btn">Connect GitHub Account</button>
+        <div id="connect-error"></div>
+      </div>`;
+    document.getElementById("connect-btn").onclick = authenticate;
+    return;
+  }
+
+  const tabsHtml = `
+    <div class="tabs">
+      <button id="tab-delete" class="${currentTab === "delete" ? "active" : ""}">Bulk Delete</button>
+      <button id="tab-publish" class="${currentTab === "publish" ? "active" : ""}">Bulk Publish</button>
+    </div>`;
+
+  if (currentTab === "publish") {
+    app.innerHTML = `
+      <div class="card">
+        ${tabsHtml}
+        <div class="toolbar">
+          <button id="select-all-btn">Select all</button>
+          <button id="select-none-btn">Clear selection</button>
+          <button class="publish-btn" id="publish-btn" disabled>Publish selected (0)</button>
+          <span class="status" id="status-text"></span>
+        </div>
+        <div id="banner-slot"></div>
+        <ul class="entries" id="entries-list"><li class="loading">Loading pending drafts…</li></ul>
+      </div>
+      <div class="card" style="font-size:13px;color:#888;">
+        These are every draft currently sitting in the editorial workflow (open PRs against <strong>${BRANCH}</strong>).
+        Publishing combines every selected draft's changes into <strong>one single commit</strong> to <strong>${BRANCH}</strong> —
+        so publishing 10 items still only triggers <strong>one build</strong>, not ten.
+      </div>`;
+
+    document.getElementById("tab-delete").onclick = () => { currentTab = "delete"; render(); };
+    document.getElementById("tab-publish").onclick = () => { currentTab = "publish"; render(); };
+    document.getElementById("select-all-btn").onclick = () => {
+      pendingPRs.forEach(pr => selectedPRs.add(pr.number));
+      renderPublishList();
+    };
+    document.getElementById("select-none-btn").onclick = () => {
+      selectedPRs = new Set();
+      renderPublishList();
+    };
+    document.getElementById("publish-btn").onclick = publishSelected;
+    loadPendingPRs();
+    return;
+  }
+
+  const collOptions = Object.entries(COLLECTIONS)
+    .map(([key, c]) => `<option value="${key}" ${key === currentCollection ? "selected" : ""}>${c.label}</option>`)
+    .join("");
+
+  app.innerHTML = `
+    <div class="card">
+      ${tabsHtml}
+      <div class="toolbar">
+        <select id="coll-select">${collOptions}</select>
+        <button id="select-all-btn">Select all</button>
+        <button id="select-none-btn">Clear selection</button>
+        <button class="danger" id="delete-btn" disabled>Delete selected (0)</button>
+        <span class="status" id="status-text"></span>
+      </div>
+      <div id="banner-slot"></div>
+      <ul class="entries" id="entries-list"><li class="loading">Loading…</li></ul>
+    </div>
+    <div class="card" style="font-size:13px;color:#888;">
+      Deletions here are committed straight to <strong>${BRANCH}</strong> as a single commit —
+      one commit removes every item you select, instead of publishing them one by one.
+      This bypasses the editorial workflow draft stage (same as Decap CMS's own delete button).
+    </div>`;
+
+  document.getElementById("tab-delete").onclick = () => { currentTab = "delete"; render(); };
+  document.getElementById("tab-publish").onclick = () => { currentTab = "publish"; render(); };
+  document.getElementById("coll-select").onchange = (e) => {
+    currentCollection = e.target.value;
+    selected = new Set();
+    loadEntries();
+  };
+  document.getElementById("select-all-btn").onclick = () => {
+    entries.forEach(en => selected.add(en.path));
+    render(); renderList();
+  };
+  document.getElementById("select-none-btn").onclick = () => {
+    selected = new Set();
+    render(); renderList();
+  };
+  document.getElementById("delete-btn").onclick = deleteSelected;
+
+  loadEntries();
+}
+
+function banner(msg, type) {
+  const slot = document.getElementById("banner-slot");
+  if (!slot) return;
+  slot.innerHTML = msg ? `<div class="banner ${type}">${msg}</div>` : "";
+}
+
+async function ghFetch(path, opts = {}) {
+  const res = await fetch(`https://api.github.com${path}`, {
+    ...opts,
+    headers: {
+      Authorization: `token ${token}`,
+      Accept: "application/vnd.github+json",
+      ...(opts.headers || {}),
+    },
+  });
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`GitHub API error (${res.status}): ${text.slice(0, 200)}`);
+  }
+  return res.status === 204 ? null : res.json();
+}
+
+async function loadEntries() {
+  const listEl = document.getElementById("entries-list");
+  listEl.innerHTML = `<li class="loading">Loading…</li>`;
+  const folder = COLLECTIONS[currentCollection].folder;
+  try {
+    const files = await ghFetch(`/repos/${REPO}/contents/${folder}?ref=${BRANCH}`);
+    const jsonFiles = files.filter(f => f.type === "file" && f.name.endsWith(".json") && f.name !== "manifest.json");
+
+    entries = await Promise.all(jsonFiles.map(async f => {
+      let data = {};
+      try {
+        const content = await ghFetch(`/repos/${REPO}/contents/${f.path}?ref=${BRANCH}`);
+        data = JSON.parse(atob(content.content.replace(/\n/g, "")));
+      } catch (e) { /* leave data empty if unparseable */ }
+      return { path: f.path, name: f.name, data };
+    }));
+
+    renderList();
+  } catch (e) {
+    listEl.innerHTML = `<li class="empty">Could not load entries: ${e.message}</li>`;
+  }
+}
+
+function renderList() {
+  const listEl = document.getElementById("entries-list");
+  const titleField = COLLECTIONS[currentCollection].titleField;
+  if (!entries.length) {
+    listEl.innerHTML = `<li class="empty">No entries in this collection.</li>`;
+    return;
+  }
+  listEl.innerHTML = entries.map(en => {
+    const title = en.data[titleField] || en.name.replace(".json", "");
+    const img = en.data.image ? `<img src="${en.data.image}" alt="">` : "";
+    const meta = en.data.category || en.data.role || "";
+    const checked = selected.has(en.path) ? "checked" : "";
+    return `
+      <li>
+        <input type="checkbox" data-path="${en.path}" ${checked} />
+        ${img}
+        <span class="name">${title}</span>
+        <span class="meta">${meta}</span>
+      </li>`;
+  }).join("");
+
+  listEl.querySelectorAll("input[type=checkbox]").forEach(cb => {
+    cb.onchange = () => {
+      if (cb.checked) selected.add(cb.dataset.path);
+      else selected.delete(cb.dataset.path);
+      updateDeleteBtn();
+    };
+  });
+  updateDeleteBtn();
+}
+
+function updateDeleteBtn() {
+  const btn = document.getElementById("delete-btn");
+  if (!btn) return;
+  btn.disabled = selected.size === 0;
+  btn.textContent = `Delete selected (${selected.size})`;
+}
+
+async function deleteSelected() {
+  if (!selected.size) return;
+  const count = selected.size;
+  if (!confirm(`Delete ${count} item${count > 1 ? "s" : ""}? This commits directly to "${BRANCH}" and cannot be undone from here.`)) return;
+
+  const statusEl = document.getElementById("status-text");
+  statusEl.textContent = "Deleting…";
+  banner("", "");
+
+  try {
+    // 1. Get latest commit + tree on branch
+    const ref = await ghFetch(`/repos/${REPO}/git/ref/heads/${BRANCH}`);
+    const latestCommitSha = ref.object.sha;
+    const latestCommit = await ghFetch(`/repos/${REPO}/git/commits/${latestCommitSha}`);
+    const baseTreeSha = latestCommit.tree.sha;
+
+    // 2. Build a tree that removes the selected files (sha: null deletes the path)
+    const treeUpdates = Array.from(selected).map(path => ({
+      path,
+      mode: "100644",
+      type: "blob",
+      sha: null,
+    }));
+
+    const newTree = await ghFetch(`/repos/${REPO}/git/trees`, {
+      method: "POST",
+      body: JSON.stringify({ base_tree: baseTreeSha, tree: treeUpdates }),
+    });
+
+    // 3. Create a single commit with the new tree
+    const names = Array.from(selected).map(p => p.split("/").pop().replace(".json", "")).join(", ");
+    const newCommit = await ghFetch(`/repos/${REPO}/git/commits`, {
+      method: "POST",
+      body: JSON.stringify({
+        message: `Bulk delete ${count} ${COLLECTIONS[currentCollection].label} item(s): ${names}`,
+        tree: newTree.sha,
+        parents: [latestCommitSha],
+      }),
+    });
+
+    // 4. Move the branch ref to the new commit
+    await ghFetch(`/repos/${REPO}/git/refs/heads/${BRANCH}`, {
+      method: "PATCH",
+      body: JSON.stringify({ sha: newCommit.sha }),
+    });
+
+    banner(`Deleted ${count} item(s) in one commit. Netlify will rebuild the manifest shortly.`, "success");
+    selected = new Set();
+    statusEl.textContent = "";
+    await loadEntries();
+  } catch (e) {
+    banner(`Delete failed: ${e.message}`, "error");
+    statusEl.textContent = "";
+  }
+}
+
+// ===== Bulk publish: merges every open Decap "cms/" draft branch into main =====
+async function loadPendingPRs() {
+  const listEl = document.getElementById("entries-list");
+  listEl.innerHTML = `<li class="loading">Loading pending drafts…</li>`;
+  try {
+    const prs = await ghFetch(`/repos/${REPO}/pulls?state=open&base=${BRANCH}&per_page=100`);
+    // Decap's editorial workflow opens PRs from branches prefixed "cms/"
+    pendingPRs = prs.filter(pr => pr.head.ref.startsWith("cms/"));
+    renderPublishList();
+  } catch (e) {
+    listEl.innerHTML = `<li class="empty">Could not load drafts: ${e.message}</li>`;
+  }
+}
+
+function renderPublishList() {
+  const listEl = document.getElementById("entries-list");
+  if (!listEl) return;
+  if (!pendingPRs.length) {
+    listEl.innerHTML = `<li class="empty">No pending drafts — everything is published.</li>`;
+    updatePublishBtn();
+    return;
+  }
+  listEl.innerHTML = pendingPRs.map(pr => {
+    const checked = selectedPRs.has(pr.number) ? "checked" : "";
+    const branchLabel = pr.head.ref.replace(/^cms\//, "");
+    return `
+      <li>
+        <input type="checkbox" data-pr="${pr.number}" ${checked} />
+        <span class="name">${pr.title}</span>
+        <span class="meta">${branchLabel}</span>
+        <span class="status-pill">Draft</span>
+      </li>`;
+  }).join("");
+
+  listEl.querySelectorAll("input[type=checkbox]").forEach(cb => {
+    cb.onchange = () => {
+      const num = Number(cb.dataset.pr);
+      if (cb.checked) selectedPRs.add(num);
+      else selectedPRs.delete(num);
+      updatePublishBtn();
+    };
+  });
+  updatePublishBtn();
+}
+
+function updatePublishBtn() {
+  const btn = document.getElementById("publish-btn");
+  if (!btn) return;
+  btn.disabled = selectedPRs.size === 0;
+  btn.textContent = `Publish selected (${selectedPRs.size})`;
+}
+
+async function publishSelected() {
+  if (!selectedPRs.size) return;
+  const count = selectedPRs.size;
+  if (!confirm(`Publish ${count} item${count > 1 ? "s" : ""} to "${BRANCH}" in one commit? This makes them live and triggers a single build.`)) return;
+
+  const statusEl = document.getElementById("status-text");
+  banner("", "");
+
+  try {
+    const prsToPublish = pendingPRs.filter(pr => selectedPRs.has(pr.number));
+
+    // 1. Gather every changed file across all selected drafts (dedup by path — last draft wins if overlapping)
+    statusEl.textContent = "Collecting changes…";
+    const fileMap = new Map(); // path -> { sha, mode, type } or null (for deletions)
+    for (const pr of prsToPublish) {
+      const compare = await ghFetch(`/repos/${REPO}/compare/${BRANCH}...${pr.head.ref}`);
+      for (const f of compare.files) {
+        if (f.status === "removed") {
+          fileMap.set(f.filename, { path: f.filename, mode: "100644", type: "blob", sha: null });
+        } else {
+          fileMap.set(f.filename, { path: f.filename, mode: "100644", type: "blob", sha: f.sha });
+        }
+      }
+    }
+
+    if (!fileMap.size) {
+      banner("No file changes found in the selected drafts.", "error");
+      statusEl.textContent = "";
+      return;
+    }
+
+    // 2. Build one tree on top of the current main branch with all those changes
+    statusEl.textContent = "Building combined commit…";
+    const ref = await ghFetch(`/repos/${REPO}/git/ref/heads/${BRANCH}`);
+    const latestCommitSha = ref.object.sha;
+    const latestCommit = await ghFetch(`/repos/${REPO}/git/commits/${latestCommitSha}`);
+
+    const newTree = await ghFetch(`/repos/${REPO}/git/trees`, {
+      method: "POST",
+      body: JSON.stringify({ base_tree: latestCommit.tree.sha, tree: Array.from(fileMap.values()) }),
+    });
+
+    const titles = prsToPublish.map(pr => pr.title).join(", ");
+    const newCommit = await ghFetch(`/repos/${REPO}/git/commits`, {
+      method: "POST",
+      body: JSON.stringify({
+        message: `Bulk publish ${count} item(s): ${titles}`,
+        tree: newTree.sha,
+        parents: [latestCommitSha],
+      }),
+    });
+
+    // 3. Push once — this is the only build trigger for the whole batch
+    statusEl.textContent = "Publishing…";
+    await ghFetch(`/repos/${REPO}/git/refs/heads/${BRANCH}`, {
+      method: "PATCH",
+      body: JSON.stringify({ sha: newCommit.sha }),
+    });
+
+    // 4. Close the drafts' PRs and clean up their branches (no extra builds — these don't touch main)
+    for (const pr of prsToPublish) {
+      try {
+        await ghFetch(`/repos/${REPO}/pulls/${pr.number}`, {
+          method: "PATCH",
+          body: JSON.stringify({ state: "closed" }),
+        });
+        await ghFetch(`/repos/${REPO}/git/refs/heads/${pr.head.ref}`, { method: "DELETE" });
+      } catch (e) { /* cleanup is best-effort, doesn't affect publish */ }
+      selectedPRs.delete(pr.number);
+    }
+
+    statusEl.textContent = "";
+    banner(`Published ${count} item(s) to ${BRANCH} in a single commit/build.`, "success");
+  } catch (e) {
+    statusEl.textContent = "";
+    banner(`Publish failed: ${e.message}`, "error");
+  }
+  await loadPendingPRs();
+}
+
+// ===== Auth: reuses the same OAuth worker Decap CMS uses =====
+function authenticate() {
+  const authUrl = `${AUTH_BASE_URL}/auth?provider=github&scope=repo`;
+  const popup = window.open(authUrl, "github-oauth", "width=600,height=700");
+
+  function handleMessage(event) {
+    if (!event.data || typeof event.data !== "string") return;
+
+    if (event.data === "authorizing:github") {
+      popup.postMessage("authorizing:github", event.origin);
+      return;
+    }
+
+    const match = event.data.match(/^authorization:github:(success|error):(.+)$/);
+    if (!match) return;
+
+    window.removeEventListener("message", handleMessage);
+    if (match[1] === "success") {
+      try {
+        const payload = JSON.parse(match[2]);
+        token = payload.token;
+        localStorage.setItem("ra_bulk_token", token);
+        render();
+      } catch (e) {
+        document.getElementById("connect-error").textContent = "Login succeeded but the response could not be read.";
+      }
+    } else {
+      document.getElementById("connect-error").textContent = "GitHub login failed. Please try again.";
+    }
+  }
+
+  window.addEventListener("message", handleMessage);
+}
+
+render();
+</script>
+</body>
+</html>

@@ -4,6 +4,12 @@ backend:
   branch: main
   base_url: https://royal-antique-cms-auth.emmanuelkdntim1.workers.dev
 
+# Editorial workflow: every add/edit becomes a Draft on its own branch instead of
+# publishing straight to main. Queue up as many product/content changes as you
+# want in the "Editorial Workflow" board, then publish them individually (or in
+# one sweep) whenever you're ready — no more one-by-one instant commits.
+publish_mode: editorial_workflow
+
 # Cloudinary Media Library
 media_library:
   name: cloudinary
