@@ -198,7 +198,7 @@
     const SAMPLE_TEAM = [
       { name: 'Mr. Ekow Nkrumah-Bentum', role: 'CEO & Founder', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1771609931/2S8A0501_cxo5qy.jpg', order: 1 },
       { name: 'Mr. Sylvester Annan Mensah', role: 'General Manager', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/c_crop,ar_1:1/v1771610404/772A1611_wydskc.jpg', order: 2 },
-      { name: 'Victoria Quaye', role: 'Manager', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1774701283/IMG_4223.JPG_jmbcyk.jpg', order: 3 },
+      { name: 'NAME', role: 'Manager', image: '', order: 3 },
       { name: 'John Afful', role: 'Human Resources (HR)', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1774701230/IMG_4244.JPG_m7o8pp.jpg', order: 4 },
       { name: 'Noel Elorm Nkrumah-Bentum', role: 'Production Manager', image: 'https://res.cloudinary.com/djmyiuu5k/image/upload/v1771612460/772A1633_hqyvge.jpg', order: 5 },
     ];
@@ -236,7 +236,7 @@
           <p class="team-name">${member.name}</p>
           <p class="team-role">${member.role}</p>
         `;
-        grid.appendChild(card);
+        if (!member.image) { const blank = document.createElement('div'); blank.className = 'team-photo-blank'; blank.style.cssText = 'width:100%;aspect-ratio:1;background:#f3eee9;margin-bottom:16px;'; blank.setAttribute('aria-hidden', 'true'); card.querySelector('img').replaceWith(blank); } grid.appendChild(card);
       });
 
       // Trigger scroll animations on new elements
