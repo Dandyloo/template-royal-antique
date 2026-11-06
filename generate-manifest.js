@@ -66,7 +66,7 @@ if (!fs.existsSync(settingsPath)) {
     tagline: "Live like royalty.",
     phone: "+233244377967",
     whatsapp: "233501505501",
-    email: "hello@royalantiquehome.com",
+    email: "info@royalantique.com",
     address: "Spintex Road, Accra, Greater Accra, Ghana",
     hours: "Monday – Saturday: 9am – 6pm",
     facebook_url: "",
